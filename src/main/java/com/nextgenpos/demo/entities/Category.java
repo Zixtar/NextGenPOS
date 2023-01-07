@@ -30,9 +30,9 @@ public class Category {
     @JoinTable(
             name="PERSISTENCE_CATEGORY_PRODUCT",
             joinColumns=
-            @JoinColumn(name="CATEGORY_ID", referencedColumnName="id"),
+            @JoinColumn(name="CATEGORY_ID", referencedColumnName="ID"),
             inverseJoinColumns=
-            @JoinColumn(name="PRODUCT_ID", referencedColumnName="id")
+            @JoinColumn(name="PRODUCT_ID", referencedColumnName="ID")
     )
     public List<Product> getProducts() {
         return products;
