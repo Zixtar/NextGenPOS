@@ -8,6 +8,9 @@
 
         <class>com.nextgenpos.demo.entities.Category</class>
         <class>com.nextgenpos.demo.entities.Product</class>
+        <class>com.nextgenpos.demo.entities.SaleItem</class>
+        <class>com.nextgenpos.demo.entities.Sale</class>
+        <class>com.nextgenpos.demo.entities.Returned</class>
         <properties>
             <property name="jakarta.persistence.schema-generation.database.action" value="create-or-extend-tables" />
         </properties>
