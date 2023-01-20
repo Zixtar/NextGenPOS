@@ -1,5 +1,5 @@
-<%@tag description="Base page template" pageEncoding="UTF-8"%>
-<%@attribute name="pageTitle"%>
+<%@tag description="Base page template" pageEncoding="UTF-8" %>
+<%@attribute name="pageTitle" %>
 <html>
 <head>
     <title>${pageTitle}</title>
@@ -16,7 +16,7 @@
 
 <%--<jsp:include page="/WEB-INF/footer.jsp"/>--%>
 <%-- TODO --%>
-<script src="/resources/js/header.js"></script>
+<%--<script src="/resources/js/header.js"></script>--%>
 
 </body>
 </html>
