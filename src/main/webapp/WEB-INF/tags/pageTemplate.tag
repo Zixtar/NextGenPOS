@@ -16,7 +16,7 @@
 
 <%--<jsp:include page="/WEB-INF/footer.jsp"/>--%>
 <%-- TODO --%>
-<script src="/resources/js/header.js"></script>
-
+<%--<script src="/resources/js/header.js"></script> --%>
+<script src="${pageContext.request.contextPath}/scripts/form-validation.js"></script>
 </body>
 </html>
