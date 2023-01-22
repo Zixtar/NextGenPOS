@@ -62,5 +62,21 @@ public class ProductsBean {
         }
         return productDtoList;
     }
+    public void createProduct(String name, Integer stock, String description, Integer price, Long categoryId){
+        LOG.info("createProduct");
+        Product product = new Product();
+        product.setName(name);
+        product.setStock(stock);
+        product.setDescription(description);
+        product.setPrice(price);
+
+        Category category = entityManager.find(Category.class, categoryId);
+        category.getProducts().add(product);
+
+
+        product.getCategories().add(category);
+        //product.setCategories( category);
+        entityManager.persist(product);
+    }
 
 }

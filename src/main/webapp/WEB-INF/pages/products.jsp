@@ -4,6 +4,7 @@
 
 <t:pageTemplate pageTitle="Products">
   <div class="container text-center">
+    <a href="${pageContext.request.contextPath}/AddProduct" class="btn btn-primary">Add Product</a>
     <c:forEach var="productsForCategory" items="${productsForCategories}">
       <div>
         <h3 >Category name : </h3>
