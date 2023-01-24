@@ -8,11 +8,11 @@
 </head>
 <body>
 
-<jsp:include page="/header.jsp"/>
+    <jsp:include page="/header.jsp"/>
 
-<main class="myMain"
-<jsp:doBody/>
-<main/>
+    <main class="myMain mt-5">
+        <jsp:doBody/>
+    </main>
 
 <%--<jsp:include page="/WEB-INF/footer.jsp"/>--%>
 <%-- TODO --%>
