@@ -1,159 +1,118 @@
-/*
-
-.hamburger_button{
-
-    border:black solid 1px;
-    background: red;
-    top:1rem;
-    left:1rem;
-    padding: 0.25rem;
-    position: absolute;
-   z-index: 100;}
-
-
-.closeIcon{
-    display: none;
-    color:black;
-    float: right;
-}
-
-#hamburger_menu{
-    position: fixed;
-
-    transition: transform 0.2s;   padding-top: 4rem;
-}
-.hambMenu_item{
-    display: block;
-    margin: 2rem 4rem;
-    font-size: 1.8rem;
-    color: white;
-
-}
-
-#hamburger_menu_items {
-    display: none;
-    background:lightpink;
-    padding: 1.2rem 1rem;
-    transform: translate(1.2rem,4rem);
-}
-
-#hamburger_menu_items ul{
-    list-style: none;
-}
-
-.showHamburgerMenu {
-    display: block;
-}
-
-.menuIcon{
-    width: 30px;
-    height: 20px;
-    position: relative;
-    margin: 0px;
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
-    -webkit-transition: .5s ease-in-out;
-    -moz-transition: .5s ease-in-out;
-    -o-transition: .5s ease-in-out;
-
-    cursor: pointer;
-}
-*/
-
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.header_bar{
-    color:transparent;
+.header_bar {
+    color: transparent;
 }
 
-/*region hamburger_button menu {*/
-#close_btn{
-    position: absolute;
-    right: 0.3rem;
-    top: 0.4rem;
-    border:0;
-    background:none;
-    cursor: pointer;
-    color:deeppink;
-}
-
-.hamburger-menu {
-    background-color: white;
-    position: absolute;
-    width: 15rem;
-    transform: translateY(2.5rem);
-    padding-left: 1rem;
-    z-index: 1;
-
-}
-
-.hamburger-menu h2, .hamburger-menu h4 {
-    padding-top: 1rem;
+/*region navbar logotext+role p*/
+p {
     color: black;
-    font-weight: initial;
+    font-size: 1.3rem;
 }
 
-.hamburger-menu ul {
-    padding-top: 0.5rem;
-    list-style: none;
+/*end region*/
+
+.modal-dialog {
+    margin: 0;
+    width: 22rem;
 }
 
-.col-menu{
-    padding-top: 0.3rem;
+.modal-content {
+    border-radius: 0;
+    height: 100vh;
+    overflow-y: scroll;
+    background-color: whitesmoke;
 }
 
-.hamburger-menu footer p {
-    padding-top: 15rem;
-    font-size: 1rem;
+.modal-title {
+    font-size: 2.5rem;
+    margin-top: 3rem;
 }
 
-.hamburger_button {
-    background-color:transparent;
-    color:deeppink;
-    border: none;
+.modal-header {
+    height: fit-content;
+    border-bottom: none;
 }
 
-.hamburger_button:hover{
-    cursor: pointer;
+.modal-header .btn-close {
+    background: transparent;
+    opacity: 1;
+    margin-right: 1.5rem;
+    margin-bottom: 5rem;
+    outline: none;
+    box-shadow: none;
 }
+
+.modal-header i {
+    color: deeppink;
+    font-size: 2.9rem;
+}
+
 
 .search_bar {
-    border-radius: 0.5rem;;
+    border-radius: 50%;;
     border-style: initial;
-    border-width: 0.3rem;
-    border-color: rgb(169, 169, 169);
+    border-width: 0rem;
+
 }
 
 .search_bar input[type="search"] {
     outline: none;
+    border-radius: 0.5rem;
+    background: whitesmoke;
+    width: 15rem;
+    height: 2rem;
+    border-color: black;
+    border-width: 0.2rem;
+
+}
+
+.search_bar input[type="search"]:focus {
+    border-color: deeppink;
+    border-width: 0.20rem;
+}
+
+.search_bar input[type="search"]::placeholder {
+    padding-left: 1rem;
+    font-size: 1.2rem;
+    color: black;
 }
 
 #heart_search {
     color: deeppink;
     background: none;
     border-style: hidden;
+    padding-left: 0.5rem;
 }
 
-/*}*/
 
-/* region navbar logo*/
-/*#logo_img{*/
-/*    height: 7rem;*/
-/*    width: 7rem;*/
-/*    border-radius: 0.5rem;*/
-/*}*/
-/*end region*/
-
-/*region navbar logotext+role p*/
-p {
-    color:black;
-    font-size: 1.3rem;
+.modal-body h4 {
+    margin-top: 1.5rem;
+    margin-left: 0.2rem;
 }
-/*end region*/
+
+.modal-body li {
+    padding-top: 0.3rem;
+    list-style: none;
+}
+
+.modal-body li a {
+    text-decoration: none;
+    color: black;
+}
+
+.mobile_toggler .hamburger-btn {
+    color: deeppink;
+
+}
+
+.col-auto {
+    padding-top: 1rem;
+}
+
+
 
