@@ -4,6 +4,7 @@
 
 <t:pageTemplate pageTitle="Users">
     <div class="container text-center">
+        <a href="${pageContext.request.contextPath}/AddUser" class="btn btn-primary">Add User</a>
         <c:forEach var="user" items="${users}">
             <div class="row">
                 <div class="col">
