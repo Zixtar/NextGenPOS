@@ -1,29 +1,3 @@
-// let slide1Position = 0;
-// let slide2Position = 0;
-// let slide3Position = 0;
-// const slides1 = document.getElementsByClassName('carousel_item');
-// const slides2 = document.getElementsByClassName('carousel_item');
-// // const slides3=document.getElementsByClassName('carousel3_item');
-// const dots = document.getElementsByClassName('dot');
-//
-// let next_button = document.getElementById('carousel_button--next');
-// let previous_button = document.getElementById('carousel_button--prev');
-//
-//
-// if (next_button != null) {
-//
-//     next_button.addEventListener("click", function () {
-//
-//
-//     })
-// }
-//
-// if (previous_button != null) {
-//     previous_button.addEventListener("click", function () {
-//
-//     })
-// }
-
 function createCarousel(carousel) {
     const slides = document.querySelectorAll(carousel + ' .carousel_item');
     const dots = document.querySelectorAll(carousel + ' .dot');
@@ -48,7 +22,6 @@ function createCarousel(carousel) {
         });
     });
 
-
     function changeCurrentSlide(slideNr, increment) {
         lastPosition = slideNr;
         slidePosition = (slideNr + increment + slides.length) % slides.length;
@@ -58,7 +31,7 @@ function createCarousel(carousel) {
         slides[lastPosition].classList.remove('carousel_item--visible');
         slides[lastPosition].classList.add('carousel_item--hidden');
         slides[slidePosition].classList.add('carousel_item--visible');
-        setBulletsStateInactive();
+        setBulletsStateInactive(dots);
         dots[slidePosition].className += ' active';
     }
 
@@ -67,30 +40,20 @@ function createCarousel(carousel) {
         changeSlideState();
     }
 
-    // function moveToPrevSlide(n) {
-    //     changeCurrentSlide(slidePosition, n);
-    //     changeSlideState(); //refactor
-    // }
-
     function showSlideUsingBullets(n) {
-        if(n==slidePosition) return;
-        moveSlide(n-slidePosition);
-       /* if (n > slidePosition) {
-            moveSlide(n - slidePosition);
-        } else if (n < slidePosition) {
-            moveSlide(n - slidePosition);
-        }*/
-
-    }
-
-    function setBulletsStateInactive() {
-        let i;
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
+        if (n == slidePosition) return;
+        moveSlide(n - slidePosition);
     }
 }
 
+function setBulletsStateInactive(dots) {
+    let i;
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+}
+
+/*old code
 // function changeSlideState(slide, slidePos) {
 //     slide.classList.remove('carousel_item--visible');
 //     slide.classList.add('carousel_item--hidden');
@@ -129,7 +92,61 @@ function createCarousel(carousel) {
 //         slidePos--;
 //     }
 // }
-
+*/
 createCarousel('#carousel1');
-createCarousel('#carousel2');
 createCarousel('#carousel3');
+
+
+/* ---------------Carousel 2 -------------------->*/
+
+
+function scrollProductCarousel(carousel) {
+    const productContainers = document.querySelector('.product-container');
+    const nextBtn = document.querySelector(carousel + ' #carousel_button--next');
+    const prevBtn = document.querySelector(carousel + ' #carousel_button--prev');
+    const dots = document.querySelectorAll(carousel + ' .dot');
+    const dotsLength = dots.length;
+    let currentDotNr = 0;
+    let containerDimensions = productContainers.getBoundingClientRect();
+    let containerWidth = containerDimensions.width;
+    nextBtn.addEventListener('click', () => {
+        if (currentDotNr < dotsLength - 1) {
+            productContainers.scrollLeft += containerWidth;
+            scroll(1);
+        }
+
+    });
+    prevBtn.addEventListener('click', () => {
+        if (currentDotNr > 0) {
+            productContainers.scrollLeft -= containerWidth;
+            scroll(-1);
+        }
+    });
+
+    dots.forEach(function (dot) {
+        dot.addEventListener('click', function () {
+            let bulletIndex = this.getAttribute('data-index');
+
+            if (bulletIndex > currentDotNr) {
+                productContainers.scrollLeft += (bulletIndex - currentDotNr) * containerWidth;
+            } else if (bulletIndex < currentDotNr) {
+                productContainers.scrollLeft -= (-1) * (bulletIndex - currentDotNr) * containerWidth;
+            }
+            showProductsUsingBullets(bulletIndex);
+        });
+    });
+
+
+    function showProductsUsingBullets(index) {
+        if (currentDotNr == index) return;
+        scroll(index - currentDotNr);
+    }
+
+    function scroll(index) {
+        currentDotNr = currentDotNr + index;
+        setBulletsStateInactive(dots);
+        dots[currentDotNr].className += ' active';
+    }
+}
+
+scrollProductCarousel('#carousel2');
