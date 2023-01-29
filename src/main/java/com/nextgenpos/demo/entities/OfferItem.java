@@ -70,4 +70,15 @@ public class OfferItem {
         this.bundleId = bundleId;
     }
 
+    @Override
+    public String toString() {
+        return "OfferItem{" +
+                "id=" + id +
+                ", product=" + product +
+                ", bundleId=" + bundleId +
+                ", newPrice=" + newPrice +
+                ", beginningDate=" + beginningDate +
+                ", endDate=" + endDate +
+                '}';
+    }
 }
