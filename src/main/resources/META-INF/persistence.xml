@@ -11,6 +11,13 @@
         <class>com.nextgenpos.demo.entities.SaleItem</class>
         <class>com.nextgenpos.demo.entities.Sale</class>
         <class>com.nextgenpos.demo.entities.Returned</class>
+        <class>com.nextgenpos.demo.entities.OfferBundle</class>
+        <class>com.nextgenpos.demo.entities.OfferItem</class>
+        <class>com.nextgenpos.demo.entities.ProductPhoto</class>
+        <class>com.nextgenpos.demo.entities.CarouselPhoto</class>
+        <class>com.nextgenpos.demo.entities.User</class>
+        <class>com.nextgenpos.demo.entities.UserGroup</class>
+        <class>com.nextgenpos.demo.entities.Address</class>
         <properties>
             <property name="jakarta.persistence.schema-generation.database.action" value="create-or-extend-tables" />
         </properties>
