@@ -1,9 +1,6 @@
 package com.nextgenpos.demo.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +14,7 @@ public class Product {
     private Integer price;
 
     private List<Category> categories;
+    private List<ProductPhoto> photos;
 
     public void setId(Long id) {
         this.id = id;
@@ -69,5 +67,16 @@ public class Product {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
+    }
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public List<ProductPhoto> getPhotos() {
+        if(photos == null)
+            setPhotos(new ArrayList<>());
+        return photos;
+    }
+
+    public void setPhotos(List<ProductPhoto> photos) {
+        this.photos = photos;
     }
 }

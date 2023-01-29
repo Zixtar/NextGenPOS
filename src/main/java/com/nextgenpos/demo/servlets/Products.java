@@ -24,9 +24,12 @@ public class Products extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       List<ProductDto> products = productsBean.findAllProducts();
+        for(ProductDto product: products){
+            product.setPhotoIds(productsBean.findPhotosIdByProductId(product.getId()));
+        }
       request.setAttribute("products", products);
       List<CategoryDto> categories = categoriesBean.findAllCategories();
-        request.setAttribute("categories", categories);
+      request.setAttribute("categories", categories);
         if(!categories.isEmpty()){
             List<List<ProductDto>> productsForCategories = productsBean.getProductsOfCategories(categories);
             request.setAttribute("productsForCategories", productsForCategories);

@@ -11,6 +11,7 @@ public class ProductDto {
     private String description;
     private Integer price;
     private List<String> categoriesName;
+    private List<Long> photoIds;
 
     public ProductDto(Long id, String name, Integer stock, String description, Integer price, List<String> categoriesName) {
         this.id = id;
@@ -39,5 +40,13 @@ public class ProductDto {
 
     public List<String> getCategoriesName() {
         return categoriesName;
+    }
+
+    public List<Long> getPhotoIds() {
+        return photoIds;
+    }
+
+    public void setPhotoIds(List<Long> photoIds) {
+        this.photoIds = photoIds;
     }
 }

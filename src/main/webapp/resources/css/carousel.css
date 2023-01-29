@@ -4,18 +4,24 @@
     margin:auto;
 }
 
-#carousel1, #carousel2, #carousel3 {
+#carousel1, #carousel2, #carousel3, #carousel {
     overflow: hidden;
     max-width: 60rem;
     position: relative;
 }
 
-
+#carousel .carousel_itemP,
 #carousel1 .carousel_item,
  .carousel_item--hidden,
 #carousel2 .carousel_item,
 #carousel3 .carousel_item{
     display: none;
+}
+#carousel .carousel_itemP img
+{
+    width: 100%;
+    height: auto;
+    padding-top: 5rem;
 }
 
 #carousel1 .carousel_item img,
@@ -26,7 +32,7 @@
     height: auto;
     padding-top: 5rem;
 }
-
+#carousel .carousel_item--visible,
 #carousel1 .carousel_item--visible,
 #carousel2 .carousel_item--visible,
 #carousel3 .carousel_item--visible{
