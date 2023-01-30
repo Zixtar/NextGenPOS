@@ -1,7 +1,9 @@
 package com.nextgenpos.demo.servlets;
 
+import com.nextgenpos.demo.common.CategoryDto;
 import com.nextgenpos.demo.common.ProductDto;
 import com.nextgenpos.demo.common.UserDto;
+import com.nextgenpos.demo.ejb.CategoriesBean;
 import com.nextgenpos.demo.ejb.UsersBean;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.inject.Inject;
@@ -18,10 +20,14 @@ import java.util.List;
 public class Users extends HttpServlet {
     @Inject
     UsersBean usersBean;
+    @Inject
+    CategoriesBean categoriesBean;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<UserDto> users = usersBean.findAllUsers();
         request.setAttribute("users", users);
+        List<CategoryDto> categories = categoriesBean.findAllCategories();
+        request.setAttribute("categories", categories);
         request.getRequestDispatcher("/WEB-INF/pages/users.jsp").forward(request, response);
     }
 

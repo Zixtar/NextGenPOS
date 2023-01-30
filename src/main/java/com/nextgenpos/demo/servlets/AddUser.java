@@ -1,5 +1,7 @@
 package com.nextgenpos.demo.servlets;
 
+import com.nextgenpos.demo.common.CategoryDto;
+import com.nextgenpos.demo.ejb.CategoriesBean;
 import com.nextgenpos.demo.ejb.UsersBean;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.inject.Inject;
@@ -8,17 +10,23 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
+
 @DeclareRoles({"ADMIN"})
 @ServletSecurity(value = @HttpConstraint(rolesAllowed = {"ADMIN"}))
 @WebServlet(name = "AddUser", value = "/AddUser")
 public class AddUser extends HttpServlet {
     @Inject
     UsersBean usersBean;
+    @Inject
+    CategoriesBean categoriesBean;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("userGroups", new String[] {"CASHIER", "GENERAL_DIRECTOR",
                 "ADMIN"});
+        List<CategoryDto> categories = categoriesBean.findAllCategories();
+        request.setAttribute("categories", categories);
         request.getRequestDispatcher("/WEB-INF/pages/addUser.jsp").forward(request, response);
     }
 

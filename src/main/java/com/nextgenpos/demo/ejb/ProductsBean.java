@@ -37,19 +37,21 @@ public class ProductsBean {
         }
     }
 
-    public List<List<ProductDto>>getProductsOfCategories(List<CategoryDto> categories) {
+    public List<ProductDto>getProductsOfCategories(Long categoryId) {
         List<ProductDto> productsList = null;
         List<List<ProductDto>> listsOfProductsList = new ArrayList<>();
         try {
-            for(CategoryDto category: categories ){
-            Category c = entityManager.find(Category.class, category.getId());
-            productsList = this.copyProductsToDto(c.getProducts());
-            listsOfProductsList.add(productsList);
-            }
+            Category category = entityManager.find(Category.class, categoryId);
+            productsList = this.copyProductsToDto(category.getProducts());
+            //for(CategoryDto category: categories ){
+            //Category c = entityManager.find(Category.class, category.getId());
+            //productsList = this.copyProductsToDto(c.getProducts());
+            //listsOfProductsList.add(productsList);
+            //}
         } catch (Exception ex) {
             throw new EJBException(ex);
         }
-        return listsOfProductsList;
+        return productsList;
     }
     public List<ProductDto> copyProductsToDto(List<Product> products){
         java.util.List<ProductDto> productDtoList = new ArrayList<>();

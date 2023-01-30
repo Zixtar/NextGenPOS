@@ -30,13 +30,10 @@ public class Products extends HttpServlet {
             product.setPhotoIds(productsBean.findPhotosIdByProductId(product.getId()));
         }
       request.setAttribute("products", products);
-      List<CategoryDto> categories = categoriesBean.findAllCategories();
-      request.setAttribute("categories", categories);
-        if(!categories.isEmpty()){
-            List<List<ProductDto>> productsForCategories = productsBean.getProductsOfCategories(categories);
-            request.setAttribute("productsForCategories", productsForCategories);
-        }
-      request.getRequestDispatcher("/WEB-INF/pages/products.jsp").forward(request, response);
+        List<CategoryDto> categories = categoriesBean.findAllCategories();
+        request.setAttribute("categories", categories);
+        request.getRequestDispatcher("/WEB-INF/pages/products.jsp").forward(request, response);
+
     }
 
     @Override

@@ -1,9 +1,9 @@
 package com.nextgenpos.demo.servlets;
 
 import com.nextgenpos.demo.common.CategoryDto;
-import com.nextgenpos.demo.common.OfferItemDto;
+import com.nextgenpos.demo.common.ProductDto;
 import com.nextgenpos.demo.ejb.CategoriesBean;
-import com.nextgenpos.demo.ejb.OfferItemBean;
+import com.nextgenpos.demo.ejb.ProductsBean;
 import jakarta.inject.Inject;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -12,21 +12,22 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "HomePage", value = "/HomePage")
-public class HomePage extends HttpServlet {
-
-    @Inject
-    OfferItemBean offerItemBean;
+@WebServlet(name = "ProductsByCategory", value = "/ProductsByCategory")
+public class ProductsByCategory extends HttpServlet {
     @Inject
     CategoriesBean categoriesBean;
+    @Inject
+    ProductsBean productsBean;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        List<OfferItemDto> offerItems=offerItemBean.findAllOfferItems();
-        request.setAttribute("offerItems",offerItems);
         List<CategoryDto> categories = categoriesBean.findAllCategories();
         request.setAttribute("categories", categories);
-        request.getRequestDispatcher("/homePage.jsp").forward(request,response);
+        Long categoryId = Long.parseLong(request.getParameter("id"));
+        if(!categories.isEmpty()){
+            List<ProductDto> productsOfCategory = productsBean.getProductsOfCategories(categoryId);
+            request.setAttribute("products", productsOfCategory);
+        }
+        request.getRequestDispatcher("/WEB-INF/pages/products.jsp").forward(request, response);
     }
 
     @Override

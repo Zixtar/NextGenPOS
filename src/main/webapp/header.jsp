@@ -76,14 +76,10 @@
                 </form>
                 <h4>Categories</h4>
                 <ul>
-                    <li><a class="hambMenu_item" href="#">Category1</a></li>
-                    <li><a class="hambMenu_item" href="#">Category2</a></li>
-                    <li><a class="hambMenu_item" href="#">Category3</a></li>
-                    <%-- TODO:  Menu categories - Use when access granted to Category entity
+                    <li><a class="hambMenu_item" href="${pageContext.request.contextPath}/Products">All Products</a></li>
                     <c:forEach var="category" items="${categories}">
-                        <li><a class="hambMenu_item" href="#">${category.name}</a> </li>
+                    <li><a class="hambMenu_item" href="${pageContext.request.contextPath}/ProductsByCategory?id=${category.id}">${category.name}</a></li>
                     </c:forEach>
-                    --%>
                 </ul>
 
             </div>
