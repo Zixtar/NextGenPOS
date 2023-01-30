@@ -8,7 +8,7 @@
 <%--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>--%>
 
 
-<div class="header_bar container-fluid fixed-top">
+<div class="header_bar container-fluid fixed-top bg-light opacity-100">
     <div class="row w-100 d-flex  justify-content-between ">
         <!-- Button trigger modal -->
         <div class="col-auto">
@@ -36,14 +36,15 @@
 
 
         <div class="col-auto">
-            <c:choose>
-                <c:when test="${pageContext.request.getRemoteUser() == null}">
-                    <a class="btn btn-lg" href="${pageContext.request.contextPath}/Login">Login</a>
-                </c:when>
-                <c:otherwise>
-                    <a class="btn btn-lg" href="${pageContext.request.contextPath}/Logout">Logout</a>
-                </c:otherwise>
-            </c:choose>
+            <c:if test="${pageContext.request.isUserInRole('ADMIN')}">
+                <p>Admin</p>
+            </c:if>
+            <c:if test="${pageContext.request.isUserInRole('GENERAL_DIRECTOR')}">
+                <p>General Director</p>
+            </c:if>
+            <c:if test="${pageContext.request.isUserInRole('CASHIER')}">
+                <p>Cashier</p>
+            </c:if>
         </div>
     </div>
 </div>

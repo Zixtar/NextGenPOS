@@ -10,16 +10,18 @@
   </c:if>
   <div class="row justify-content-center">
     <div class="form-group col-md-4 col-md-offset-4 align-center">
-      <div>
         <form class="form-signin" method="POST" action="j_security_check">
-          <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+          <div class="d-flex justify-content-center">
+            <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+          </div>
           <label for="username" class="sr-only align-center">Registration Name</label>
           <input type="text" id="username" name="j_username" class="form-control" placeholder="Username" required autofocus>
           <label for="password" class="sr-only">Password</label>
           <input type="password" id="password" name="j_password" class="form-control" placeholder="Password" required>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+          <div class="d-flex justify-content-center">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+          </div>
         </form>
-      </div>
     </div>
   </div>
 </t:pageTemplate>

@@ -2,13 +2,15 @@ package com.nextgenpos.demo.servlets;
 
 import com.nextgenpos.demo.common.UserDto;
 import com.nextgenpos.demo.ejb.UsersBean;
+import jakarta.annotation.security.DeclareRoles;
 import jakarta.inject.Inject;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-
+@DeclareRoles({"ADMIN"})
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"ADMIN"}))
 @WebServlet(name = "EditUser", value = "/EditUser")
 public class EditUser extends HttpServlet {
     @Inject
@@ -16,7 +18,7 @@ public class EditUser extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("userGroups", new String[] {"CASHIER", "MANAGER", "GENERAL_DIRECTOR",
+        request.setAttribute("userGroups", new String[] {"CASHIER", "GENERAL_DIRECTOR",
                 "ADMIN"});
         Long userId=Long.parseLong(request.getParameter("id"));
         UserDto user=usersBean.findUserById(userId);
