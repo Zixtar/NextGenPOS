@@ -81,7 +81,7 @@
                     <li><a class="hambMenu_item" href="${pageContext.request.contextPath}/ProductsByCategory?id=${category.id}">${category.name}</a></li>
                     </c:forEach>
                 </ul>
-
+                    <a href="${pageContext.request.contextPath}/AddCategory" class="btn btn-primary">Add Category</a>
             </div>
             <div class="modal-footer">
                 <p class="text-muted">&copy Copyright Teen Titans.All rights reserved</p>

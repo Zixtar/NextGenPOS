@@ -43,11 +43,7 @@ public class ProductsBean {
         try {
             Category category = entityManager.find(Category.class, categoryId);
             productsList = this.copyProductsToDto(category.getProducts());
-            //for(CategoryDto category: categories ){
-            //Category c = entityManager.find(Category.class, category.getId());
-            //productsList = this.copyProductsToDto(c.getProducts());
-            //listsOfProductsList.add(productsList);
-            //}
+
         } catch (Exception ex) {
             throw new EJBException(ex);
         }

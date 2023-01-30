@@ -5,6 +5,7 @@ import com.nextgenpos.demo.common.ProductDto;
 import com.nextgenpos.demo.entities.Category;
 import com.nextgenpos.demo.entities.Product;
 import jakarta.ejb.EJBException;
+import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
 
+@Stateless
 public class CategoriesBean {
     private static final Logger LOG = Logger.getLogger(CategoriesBean.class.getName());
     @PersistenceContext
@@ -45,6 +47,11 @@ public class CategoriesBean {
         }
         return categoryDtoList;
     }
-
+    public void createCategory(String name){
+        LOG.info("createCategory");
+        Category category = new Category();
+        category.setName(name);
+        entityManager.persist(category);
+    }
 
 }
