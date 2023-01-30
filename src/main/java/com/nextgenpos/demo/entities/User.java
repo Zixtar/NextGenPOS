@@ -2,11 +2,15 @@ package com.nextgenpos.demo.entities;
 
 import jakarta.persistence.*;
 
+
 import java.util.ArrayList;
+
 import java.util.List;
 
 @Entity
 public class User {
+    @Id
+    @GeneratedValue
     private Long id;
     private String username;
     private String password;
@@ -17,14 +21,23 @@ public class User {
     private String mbti;
     private Address address;
 
+
     private List<ErrorReport> errorReports;
+
+    @ManyToMany
+    @JoinTable(name = "wishlist",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private List<Product> wishlistProducts;
 
     public String getMbti() {
         return mbti;
     }
+
     public void setMbti(String mbti) {
         this.mbti = mbti;
     }
+
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public Address getAddress() {
         return address;
@@ -34,8 +47,7 @@ public class User {
         this.address = address;
     }
 
-    @Id
-    @GeneratedValue
+
     public Long getId() {
         return id;
     }
@@ -92,9 +104,10 @@ public class User {
         this.email = email;
     }
 
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<ErrorReport> getErrorReports() {
-        if(errorReports==null){
+        if (errorReports == null) {
             setErrorReports(new ArrayList<>());
         }
         return errorReports;
@@ -102,5 +115,15 @@ public class User {
 
     public void setErrorReports(List<ErrorReport> errorReports) {
         this.errorReports = errorReports;
+
+
+    }
+
+    public List<Product> getWishlistProducts() {
+        return wishlistProducts;
+    }
+
+    public void setWishlistProducts(List<Product> wishlistProducts) {
+        this.wishlistProducts = wishlistProducts;
     }
 }

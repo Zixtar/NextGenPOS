@@ -94,14 +94,14 @@ function setBulletsStateInactive(dots) {
 // }
 */
 createCarousel('#carousel1');
-createCarousel('#carousel3');
+// createCarousel('#carousel3');
 
 
 /* ---------------Carousel 2 -------------------->*/
 
 
 function scrollProductCarousel(carousel) {
-    const productContainers = document.querySelector('.product-container');
+    const productContainers = document.querySelector(carousel+ ' .product-container');
     const nextBtn = document.querySelector(carousel + ' #carousel_button--next');
     const prevBtn = document.querySelector(carousel + ' #carousel_button--prev');
     const dots = document.querySelectorAll(carousel + ' .dot');
@@ -150,3 +150,4 @@ function scrollProductCarousel(carousel) {
 }
 
 scrollProductCarousel('#carousel2');
+scrollProductCarousel('#carousel3');

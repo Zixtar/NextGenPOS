@@ -7,6 +7,8 @@ import java.util.List;
 
 @Entity
 public class Product {
+    @Id
+    @GeneratedValue
     private Long id;
     private String name;
     private Integer stock;
@@ -16,12 +18,14 @@ public class Product {
     private List<Category> categories;
     private List<ProductPhoto> photos;
 
+    @ManyToMany(mappedBy = "wishlistProducts")
+    private List<User> wishlistedByUsers;
+
     public void setId(Long id) {
         this.id = id;
     }
 
-    @Id
-    @GeneratedValue
+
     public Long getId() {
         return id;
     }

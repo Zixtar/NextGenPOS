@@ -72,7 +72,9 @@
     right: 0;
 }
 
-#carousel_button--prev:hover, #carousel_button--next:hover {
+#carousel_button--prev:hover, #carousel_button--next:hover,
+.product #carousel_button--prev:hover,
+.product #carousel_button--next:hover{
     background-color: rgba(0, 0, 0, 0.8);
 }
 
@@ -115,7 +117,7 @@
 }
 
 .product-category {
-    padding: 0 10vw;
+    padding: 0 14vw;
     font-size: 1.8rem;
     font-weight: 500;
     /*     margin-bottom:2.1rem; */
