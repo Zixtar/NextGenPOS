@@ -11,7 +11,6 @@ public class User {
     private String lastName;
     private String telNr;
     private String email;
-    private Integer state;
     private String mbti;
     private Address address;
 
@@ -86,13 +85,5 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Integer getState() {
-        return state;
-    }
-
-    public void setState(Integer state) {
-        this.state = state;
     }
 }

@@ -9,9 +9,14 @@ public class UserDto {
     private String lastName;
     private String telNr;
     private String email;
-    private Integer state;
+    private String mbti;
+    private String country;
+    private String city;
+    private String street;
+    private Integer number;
+    private Integer postalCode;
 
-    public UserDto(Long id, String username, String password, String firstName, String lastName, String telNr, String email, Integer state) {
+    public UserDto(Long id, String username, String password, String firstName, String lastName, String telNr, String email, String mbti, String country, String city, String street, Integer number, Integer postalCode) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -19,7 +24,12 @@ public class UserDto {
         this.lastName = lastName;
         this.telNr = telNr;
         this.email = email;
-        this.state = state;
+        this.mbti = mbti;
+        this.country = country;
+        this.city = city;
+        this.street = street;
+        this.number = number;
+        this.postalCode = postalCode;
     }
 
     public Long getId() {
@@ -78,11 +88,51 @@ public class UserDto {
         this.email = email;
     }
 
-    public Integer getState() {
-        return state;
+    public String getMbti() {
+        return mbti;
     }
 
-    public void setState(Integer state) {
-        this.state = state;
+    public void setMbti(String mbti) {
+        this.mbti = mbti;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
+    public Integer getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(Integer postalCode) {
+        this.postalCode = postalCode;
     }
 }
