@@ -1,6 +1,7 @@
 package com.nextgenpos.demo.ejb;
 
 import com.nextgenpos.demo.common.UserDto;
+import com.nextgenpos.demo.entities.Address;
 import com.nextgenpos.demo.entities.User;
 import com.nextgenpos.demo.entities.UserGroup;
 import jakarta.ejb.EJBException;
@@ -44,13 +45,28 @@ public class UsersBean {
         return userDtoList;
     }
 
-    public void createUser(String username, String email, String password, String group) {
+    public void createUser(String username, String email, String password,String country, String city,
+                           String street, Integer number, Integer postalCode, String firstName,
+                           String lastName, String telNr,String group, String mbti) {
         LOG.info("createUser");
         User newUser = new User();
         newUser.setUsername(username);
         newUser.setEmail(email);
         newUser.setPassword(passwordBean.convertToSha256(password));
+        Address address= new Address();
+        address.setCountry(country);
+        address.setCity(city);
+        address.setStreet(street);
+        address.setNumber(number);
+        address.setPostalCode(postalCode);
+        newUser.setAddress(address);
+        entityManager.persist(address);
+        newUser.setFirstName(firstName);
+        newUser.setLastName(lastName);
+        newUser.setTelNr(telNr);
+        newUser.setMbti(mbti);
         entityManager.persist(newUser);
+        address.setUser(newUser);
         assignGroupToUser(username, group);
     }
     private void assignGroupToUser(String username, String group) {

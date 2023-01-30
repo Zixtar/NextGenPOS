@@ -1,8 +1,6 @@
 package com.nextgenpos.demo.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class User {
@@ -11,9 +9,26 @@ public class User {
     private String password;
     private String firstName;
     private String lastName;
-    private Long telNr;
+    private String telNr;
     private String email;
     private Integer state;
+    private String mbti;
+    private Address address;
+
+    public String getMbti() {
+        return mbti;
+    }
+    public void setMbti(String mbti) {
+        this.mbti = mbti;
+    }
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
     @Id
     @GeneratedValue
@@ -57,11 +72,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Long getTelNr() {
+    public String getTelNr() {
         return telNr;
     }
 
-    public void setTelNr(Long telNr) {
+    public void setTelNr(String telNr) {
         this.telNr = telNr;
     }
 

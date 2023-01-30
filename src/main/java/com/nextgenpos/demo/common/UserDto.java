@@ -7,11 +7,11 @@ public class UserDto {
     private String password;
     private String firstName;
     private String lastName;
-    private Long telNr;
+    private String telNr;
     private String email;
     private Integer state;
 
-    public UserDto(Long id, String username, String password, String firstName, String lastName, Long telNr, String email, Integer state) {
+    public UserDto(Long id, String username, String password, String firstName, String lastName, String telNr, String email, Integer state) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -62,11 +62,11 @@ public class UserDto {
         this.lastName = lastName;
     }
 
-    public Long getTelNr() {
+    public String getTelNr() {
         return telNr;
     }
 
-    public void setTelNr(Long telNr) {
+    public void setTelNr(String telNr) {
         this.telNr = telNr;
     }
 

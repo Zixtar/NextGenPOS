@@ -17,6 +17,7 @@
         <class>com.nextgenpos.demo.entities.CarouselPhoto</class>
         <class>com.nextgenpos.demo.entities.User</class>
         <class>com.nextgenpos.demo.entities.UserGroup</class>
+        <class>com.nextgenpos.demo.entities.Address</class>
         <properties>
             <property name="jakarta.persistence.schema-generation.database.action" value="create-or-extend-tables" />
         </properties>

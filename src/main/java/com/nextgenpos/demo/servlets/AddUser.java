@@ -25,8 +25,18 @@ public class AddUser extends HttpServlet {
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String country = request.getParameter("country");
+        String city = request.getParameter("city");
+        String street = request.getParameter("street");
+        Integer number = Integer.parseInt(request.getParameter("number"));
+        Integer postalCode = Integer.parseInt(request.getParameter("postal_code"));
+        String firstName = request.getParameter("first_name");
+        String lastName = request.getParameter("last_name");
+        String telNr = request.getParameter("tel_nr");
         String userGroup = request.getParameter("user_group");
-        usersBean.createUser(username, email, password, userGroup);
+        String mbti = request.getParameter("mbti");
+        usersBean.createUser(username, email, password,country,city,street,number,postalCode,
+                firstName,lastName,telNr, userGroup,mbti);
         response.sendRedirect(request.getContextPath() + "/Users");
     }
 }
