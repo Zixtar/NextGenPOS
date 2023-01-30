@@ -11,8 +11,8 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
-@DeclareRoles({"GENERAL_DIRECTOR"})
-@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"GENERAL_DIRECTOR"}))
+@DeclareRoles({"GENERAL_DIRECTOR","ADMIN"})
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"GENERAL_DIRECTOR","ADMIN"}))
 @WebServlet(name = "AddProduct", value = "/AddProduct")
 public class AddProduct extends HttpServlet {
 
