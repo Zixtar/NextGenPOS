@@ -126,4 +126,25 @@ public class ProductsBean {
                 car.getFileContent());
         return photoDetails;
     }
+
+    public void updateProduct(String name, Integer stock, String description, Integer price, String[] categoryIds, Long productId) {
+        LOG.info("updateProduct");
+        Product product = entityManager.find(Product.class,productId);
+        product.setName(name);
+        product.setStock(stock);
+        product.setDescription(description);
+        product.setPrice(price);
+        List<Category> oldCategories = product.getCategories();
+        for(Category oldCategory: oldCategories){
+            oldCategory.getProducts().remove(product);
+        }
+        product.getCategories().clear();
+        for(String categoryId: categoryIds){
+            Long id= Long.parseLong(categoryId);
+            Category category = entityManager.find(Category.class,id);
+            category.getProducts().add(product);
+            product.getCategories().add(category);
+        }
+
+    }
 }

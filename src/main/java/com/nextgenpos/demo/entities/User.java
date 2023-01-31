@@ -116,8 +116,8 @@ public class User {
     }
     @ManyToMany
     @JoinTable(name = "wishlist",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id"))
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "ID"))
     public List<Product> getWishlistProducts() {
         return wishlistProducts;
     }

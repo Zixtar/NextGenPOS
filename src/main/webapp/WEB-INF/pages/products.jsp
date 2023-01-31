@@ -52,7 +52,7 @@
             <a class="btn btn-secondary" href="${pageContext.request.contextPath}/AddProductPhoto?id=${product.id}" role="button">Add photo</a>
           </div>
         </div>
-
+        <a class="btn btn-secondary" href="${pageContext.request.contextPath}/EditProduct?id=${product.id}">Edit Product</a>
     </c:forEach>
     <a href="${pageContext.request.contextPath}/AddProduct" class="btn btn-primary">Add Product</a>
 

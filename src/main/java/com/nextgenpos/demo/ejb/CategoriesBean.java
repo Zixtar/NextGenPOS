@@ -63,4 +63,15 @@ public class CategoriesBean {
 
         }
     }
+
+    public List<CategoryDto> findCategoriesByName(List<String> categoriesName) {
+        List<CategoryDto> catDto = new ArrayList<>();
+        for(String categoryName:categoriesName){
+            TypedQuery<Category> typedQuery = entityManager.createQuery("SELECT c FROM Category c where c.name=:catName", Category.class)
+                    .setParameter("catName",categoryName);
+            Category category=typedQuery.getSingleResult();
+            catDto.add(new CategoryDto(category.getId(),category.getName(),new ArrayList<>()));
+        }
+        return catDto;
+    }
 }

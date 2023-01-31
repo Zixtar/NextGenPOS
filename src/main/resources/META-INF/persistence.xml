@@ -19,7 +19,7 @@
         <class>com.nextgenpos.demo.entities.UserGroup</class>
         <class>com.nextgenpos.demo.entities.Address</class>
         <class>com.nextgenpos.demo.entities.ErrorReport</class>
-        <class>com.nextgenpos.demo.entities.Wishlist</class>
+
         <properties>
             <property name="jakarta.persistence.schema-generation.database.action" value="create-or-extend-tables" />
         </properties>
