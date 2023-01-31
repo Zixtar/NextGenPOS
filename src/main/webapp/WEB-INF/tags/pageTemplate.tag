@@ -10,7 +10,7 @@
 
     <jsp:include page="/header.jsp"/>
 
-    <main class="myMain mt-5 p-5">
+    <main class="myMain overflow-auto">
         <jsp:doBody/>
     </main>
 

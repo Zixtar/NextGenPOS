@@ -5,9 +5,14 @@
 }
 
 .header_bar {
+    height: 70px;
     color: transparent;
 }
 
+.myMain{
+    height: 100%;
+    padding: 70px 30px 70px;
+}
 /*region navbar logotext+role p*/
 p {
     color: black;
