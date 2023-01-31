@@ -8,8 +8,10 @@ import jakarta.inject.Inject;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import org.eclipse.tags.shaded.org.apache.xpath.operations.Bool;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ErrorReports", value = "/ErrorReports")
@@ -29,6 +31,14 @@ public class ErrorReports extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String[] errorReportIdsByString=request.getParameterValues("error_report_ids");
+        if(errorReportIdsByString != null){
+            List<Long> errorReportIds = new ArrayList<>();
+            for(String categoryIdAsString : errorReportIdsByString){
+                errorReportIds.add(Long.parseLong(categoryIdAsString));
+            }
+            errorReportBean.setErrorReportStateByIds(errorReportIds);
+        }
+        response.sendRedirect(request.getContextPath() + "/ErrorReports");
     }
 }
