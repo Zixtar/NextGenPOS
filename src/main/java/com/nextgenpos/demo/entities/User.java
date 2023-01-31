@@ -9,8 +9,7 @@ import java.util.List;
 
 @Entity
 public class User {
-    @Id
-    @GeneratedValue
+
     private Long id;
     private String username;
     private String password;
@@ -24,10 +23,6 @@ public class User {
 
     private List<ErrorReport> errorReports;
 
-    @ManyToMany
-    @JoinTable(name = "wishlist",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> wishlistProducts;
 
     public String getMbti() {
@@ -47,7 +42,8 @@ public class User {
         this.address = address;
     }
 
-
+    @Id
+    @GeneratedValue
     public Long getId() {
         return id;
     }
@@ -118,7 +114,10 @@ public class User {
 
 
     }
-
+    @ManyToMany
+    @JoinTable(name = "wishlist",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
     public List<Product> getWishlistProducts() {
         return wishlistProducts;
     }
