@@ -47,6 +47,19 @@ public class UsersBean {
                 s.getAddress().getNumber(),s.getAddress().getPostalCode());
     }
 
+    public UserDto findUserByUsername(String username)
+    {
+        LOG.info("findUserByUsername");
+        TypedQuery<User> typedQuery = entityManager.createQuery("SELECT u FROM User u where u.username=:username", User.class)
+                .setParameter("username",username);
+        User s=typedQuery.getSingleResult();
+        return new UserDto(s.getId(), s.getUsername(),s.getPassword(),
+                s.getFirstName(),s.getLastName(),s.getTelNr(),s.getEmail(),
+                s.getMbti(),s.getAddress().getCountry(),
+                s.getAddress().getCity(),s.getAddress().getStreet(),
+                s.getAddress().getNumber(),s.getAddress().getPostalCode());
+    }
+
     public List<UserDto> copyUsersToDto(List<User> users){
         java.util.List<UserDto> userDtoList = new ArrayList<>();
 

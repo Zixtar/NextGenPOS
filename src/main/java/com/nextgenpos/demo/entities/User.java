@@ -2,6 +2,9 @@ package com.nextgenpos.demo.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class User {
     private Long id;
@@ -13,6 +16,8 @@ public class User {
     private String email;
     private String mbti;
     private Address address;
+
+    private List<ErrorReport> errorReports;
 
     public String getMbti() {
         return mbti;
@@ -85,5 +90,17 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public List<ErrorReport> getErrorReports() {
+        if(errorReports==null){
+            setErrorReports(new ArrayList<>());
+        }
+        return errorReports;
+    }
+
+    public void setErrorReports(List<ErrorReport> errorReports) {
+        this.errorReports = errorReports;
     }
 }
