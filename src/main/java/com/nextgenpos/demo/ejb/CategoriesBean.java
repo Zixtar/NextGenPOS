@@ -54,4 +54,13 @@ public class CategoriesBean {
         entityManager.persist(category);
     }
 
+    public void deleteCategoriesByIds(List<Long> categoryIds) {
+        LOG.info("deleteCategoriesByIds");
+
+        for( Long categoryId : categoryIds){
+            Category category = entityManager.find(Category.class, categoryId);
+            entityManager.remove(category);
+
+        }
+    }
 }

@@ -75,24 +75,23 @@
                     </div>
                 </form>
                 <h4>Categories</h4>
+                    <form method="POST" action="${pageContext.request.contextPath}/Categories">
                 <ul>
-
                     <li><a class="hambMenu_item" href="${pageContext.request.contextPath}/Products">All Products</a></li>
                     <c:forEach var="category" items="${categories}">
+                    <div class="row">
+                        <div class="col">
                     <li><a class="hambMenu_item" href="${pageContext.request.contextPath}/ProductsByCategory?id=${category.id}">${category.name}</a></li>
+                        </div>
+                        <div class="col">
+                            <input type="checkbox" name="category_ids" value="${category.id}"/>
+                        </div>
+                    </div>
                     </c:forEach>
-
-                    <li><a class="hambMenu_item" href="#">Category1</a></li>
-                    <li><a class="hambMenu_item" href="#">Category2</a></li>
-                    <li><a class="hambMenu_item" href="#">Category3</a></li>
-<%--                     TODO:  Menu categories - Use when access granted to Category entity--%>
-<%--                    <c:forEach var="category" items="${categories}">--%>
-<%--                        <li><a class="hambMenu_item" href="${pageContext.request.contextPath}/Category?id=${category.id}">${category.name}</a> </li>--%>
-<%--                    </c:forEach>--%>
-
-
                 </ul>
                     <a href="${pageContext.request.contextPath}/AddCategory" class="btn btn-primary">Add Category</a>
+                        <button class="btn btn-danger" type="submit">Delete Categories</button>
+                    </form>
             </div>
             <div class="modal-footer">
                 <p class="text-muted">&copy Copyright Teen Titans.All rights reserved</p>
