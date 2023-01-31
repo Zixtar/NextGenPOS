@@ -1,5 +1,6 @@
 package com.nextgenpos.demo.servlets;
 
+import com.nextgenpos.demo.common.ErrorReportDto;
 import com.nextgenpos.demo.common.UserDto;
 import com.nextgenpos.demo.ejb.ErrorReportBean;
 import com.nextgenpos.demo.ejb.UsersBean;
@@ -9,9 +10,10 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet(name = "AddErrorReport", value = "/AddErrorReport")
-public class AddErrorReport extends HttpServlet {
+@WebServlet(name = "ErrorReportsByUser", value = "/ErrorReportsByUser")
+public class ErrorReportsByUser extends HttpServlet {
     @Inject
     ErrorReportBean errorReportBean;
     @Inject
@@ -19,15 +21,13 @@ public class AddErrorReport extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDto user=usersBean.findUserByUsername(request.getRemoteUser());
-        request.setAttribute("user",user);
-        request.getRequestDispatcher("/WEB-INF/pages/addErrorReport.jsp").forward(request, response);
+        List<ErrorReportDto> errorReports=errorReportBean.findErrorReportsByUserId(user.getId());
+        request.setAttribute("errorReports", errorReports);
+        request.getRequestDispatcher("/WEB-INF/pages/errorReports.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String description=request.getParameter("description");
-        Long userId=Long.parseLong(request.getParameter("user_id"));
-        errorReportBean.createErrorReportForUserId(description,userId);
-        response.sendRedirect(request.getContextPath() + "/ErrorReportsByUser");
+
     }
 }

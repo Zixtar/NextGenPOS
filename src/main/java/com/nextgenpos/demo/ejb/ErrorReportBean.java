@@ -33,7 +33,7 @@ public class ErrorReportBean {
     private List<ErrorReportDto> copyErrorReportsToDto(List<ErrorReport> errorReports) {
         java.util.List<ErrorReportDto> errorReportDtoList = new ArrayList<>();
         for (ErrorReport s: errorReports) {
-            errorReportDtoList.add(new ErrorReportDto(s.getId(), s.getDescription(), s.getState(), s.getDate()));
+            errorReportDtoList.add(new ErrorReportDto(s.getId(), s.getDescription(), s.getState(), s.getDate(),s.getUser().getUsername()));
         }
         return errorReportDtoList;
     }

@@ -8,6 +8,9 @@
         <c:forEach var="errorReport" items="${errorReports}">
             <div class="row">
                 <div class="col">
+                        ${errorReport.username}
+                </div>
+                <div class="col">
                         ${errorReport.date}
                 </div>
                 <div class="col">

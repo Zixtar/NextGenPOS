@@ -8,12 +8,14 @@ public class ErrorReportDto {
     String description;
     Boolean state;
     LocalDate date;
+    String username;
 
-    public ErrorReportDto(Long id, String description, Boolean state, LocalDate date) {
+    public ErrorReportDto(Long id, String description, Boolean state, LocalDate date,String username) {
         this.id = id;
         this.description = description;
         this.state = state;
         this.date = date;
+        this.username=username;
     }
 
     public Long getId() {
@@ -46,5 +48,13 @@ public class ErrorReportDto {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
