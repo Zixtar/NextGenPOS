@@ -2,14 +2,15 @@ package com.nextgenpos.demo.entities;
 
 import jakarta.persistence.*;
 
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 public class Sale {
     @Id
-    @GeneratedValue
-    private Long id;
+    private String id = String.format("%040d", new BigInteger(UUID.randomUUID().toString().replace("-", ""), 16));;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "SALE_ID")
@@ -21,6 +22,7 @@ public class Sale {
     @JoinColumn(name="CASHIER_ID", nullable = false)
     private User Cashier;
 
+    private String State;
 
     public Collection<SaleItem> getSaleItems() {
         return saleItems;
@@ -46,11 +48,21 @@ public class Sale {
         Cashier = cashier;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
+    }
+
+    public String getState() {
+        if(State == null)
+            return "";
+        return State;
+    }
+
+    public void setState(String status) {
+        this.State = status;
     }
 }
