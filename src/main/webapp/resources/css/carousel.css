@@ -136,7 +136,6 @@
     padding: 0 14vw;
     font-size: 1.8rem;
     font-weight: 500;
-    /*     margin-bottom:2.1rem; */
     text-transform: capitalize;
 }
 
@@ -147,7 +146,13 @@
     scroll-behavior: smooth;
 
 }
-
+.image-placeholder{
+    background: url('/resources/img/converse.jpg') no-repeat;
+    position: relative;
+    width: 12rem;
+    height: 12rem;
+    overflow: hidden;
+}
 /* .product-container::-webkit-scrollbar{
     display:none;
 } */
@@ -190,6 +195,7 @@
     bottom: 83%;
     padding: 0.6rem;
     border: none;
+    background-color: transparent;
 }
 
 .wishlist-btn i:hover,
@@ -289,4 +295,8 @@
 #carousel2 .dots {
     margin-top: 2.5rem;
 }
-
+#carousel3 .product-category{
+    align-items: center;
+    justify-content: center;
+    margin-left: 2rem;
+}

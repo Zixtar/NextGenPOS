@@ -22,7 +22,6 @@ public class User {
 
 
     private List<ErrorReport> errorReports;
-
     private List<Product> wishlistProducts;
 
     public String getMbti() {
@@ -114,6 +113,7 @@ public class User {
 
 
     }
+
     @ManyToMany
     @JoinTable(name = "wishlist",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "ID"),

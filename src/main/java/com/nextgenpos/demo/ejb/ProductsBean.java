@@ -58,7 +58,7 @@ public class ProductsBean {
             for(Category c: categoriesOfThisProduct){
                 nameOfCategories.add(c.getName());
             }
-            productDtoList.add(new ProductDto(s.getId(), s.getName(), s.getStock(), s.getDescription(), s.getPrice(), nameOfCategories));
+            productDtoList.add(new ProductDto(s.getId(), s.getName(), s.getStock(), s.getDescription(), s.getPrice(), nameOfCategories, s.getOfferItems()));
         }
         return productDtoList;
     }
@@ -120,7 +120,7 @@ public class ProductsBean {
         }
 
         ProductDto productDetail = new ProductDto(product.getId(),product.getName(),product.getStock(),product.getDescription(),
-                product.getPrice(), categoriesname);
+                product.getPrice(), categoriesname,product.getOfferItems());
         return productDetail;
     }
 
@@ -163,6 +163,17 @@ public class ProductsBean {
             }
             entityManager.remove(product);
         }
+    }
+
+    public ProductPhotoDto findFirstProductPhotoById(Long productId)
+    {
+        List<ProductPhoto> photos=entityManager.createQuery("SELECT p FROM ProductPhoto p WHERE p.product.id=:id", ProductPhoto.class)
+                .setParameter("id", productId)
+                .getResultList();
+        if(photos.isEmpty())
+            return null;
+        ProductPhoto photo=photos.get(0);
+        return new ProductPhotoDto(photo.getId(),photo.getFilename(),photo.getFileType(),photo.getFileContent());
     }
 
 }

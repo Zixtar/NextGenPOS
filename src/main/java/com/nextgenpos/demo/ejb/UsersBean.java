@@ -1,10 +1,7 @@
 package com.nextgenpos.demo.ejb;
 
 import com.nextgenpos.demo.common.UserDto;
-import com.nextgenpos.demo.entities.Address;
-import com.nextgenpos.demo.entities.Category;
-import com.nextgenpos.demo.entities.User;
-import com.nextgenpos.demo.entities.UserGroup;
+import com.nextgenpos.demo.entities.*;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
@@ -44,7 +41,7 @@ public class UsersBean {
                 s.getFirstName(),s.getLastName(),s.getTelNr(),s.getEmail(),
                 s.getMbti(),s.getAddress().getCountry(),
                 s.getAddress().getCity(),s.getAddress().getStreet(),
-                s.getAddress().getNumber(),s.getAddress().getPostalCode());
+                s.getAddress().getNumber(),s.getAddress().getPostalCode(), s.getWishlistProducts());
     }
 
     public UserDto findUserByUsername(String username)
@@ -52,12 +49,14 @@ public class UsersBean {
         LOG.info("findUserByUsername");
         TypedQuery<User> typedQuery = entityManager.createQuery("SELECT u FROM User u where u.username=:username", User.class)
                 .setParameter("username",username);
+        if(typedQuery.getResultList().isEmpty()) return null;
         User s=typedQuery.getSingleResult();
+
         return new UserDto(s.getId(), s.getUsername(),s.getPassword(),
                 s.getFirstName(),s.getLastName(),s.getTelNr(),s.getEmail(),
                 s.getMbti(),s.getAddress().getCountry(),
                 s.getAddress().getCity(),s.getAddress().getStreet(),
-                s.getAddress().getNumber(),s.getAddress().getPostalCode());
+                s.getAddress().getNumber(),s.getAddress().getPostalCode(), s.getWishlistProducts());
     }
 
     public List<UserDto> copyUsersToDto(List<User> users){
@@ -68,7 +67,7 @@ public class UsersBean {
                     s.getFirstName(),s.getLastName(),s.getTelNr(),s.getEmail(),
                     s.getMbti(),s.getAddress().getCountry(),
                     s.getAddress().getCity(),s.getAddress().getStreet(),
-                    s.getAddress().getNumber(),s.getAddress().getPostalCode()));
+                    s.getAddress().getNumber(),s.getAddress().getPostalCode(), s.getWishlistProducts()));
         }
         return userDtoList;
     }
@@ -122,5 +121,37 @@ public class UsersBean {
         userGroup.setUsername(username);
         userGroup.setUserGroup(group);
         entityManager.persist(userGroup);
+    }
+
+    public void addProductToUserWishList(Long idProduct, Long idUser)
+    {
+        LOG.info("addProductToUserWishlist");
+        TypedQuery <User> typedQuery1= entityManager.createQuery("SELECT u FROM User u WHERE u.id=:id", User.class)
+                .setParameter("id", idUser);
+        User user=typedQuery1.getSingleResult();
+        TypedQuery<Product> typedQuery2=entityManager.createQuery("SELECT p FROM Product p WHERE p.id=:id", Product.class)
+                .setParameter("id", idProduct);
+        Product product=typedQuery2.getSingleResult();
+        List<Product> userWishlist=user.getWishlistProducts();
+        for (Product element:userWishlist
+             ) {
+            if(element==product)
+                return;
+        }
+        userWishlist.add(product);
+        user.setWishlistProducts(userWishlist);
+    }
+
+    public void deleteItemFromWishlist(Long idProduct, Long idUser)
+    {
+        User user=entityManager.createQuery("SELECT u FROM User u WHERE u.id=:id", User.class)
+                .setParameter("id",idUser)
+                .getSingleResult();
+        Product product=entityManager.createQuery("SELECT p FROM Product p WHERE p.id=:id", Product.class)
+                .setParameter("id", idProduct)
+                .getSingleResult();
+        List<Product>userWishList=user.getWishlistProducts();
+        userWishList.remove(product);
+        user.setWishlistProducts(userWishList);
     }
 }

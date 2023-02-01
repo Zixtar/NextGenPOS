@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class OfferItemDto {
 
-    private Integer id;
+    private Long id;
 
     private Product product;
 
@@ -19,7 +19,7 @@ public class OfferItemDto {
 
     private Date endDate;
 
-    public OfferItemDto(Integer id, Product product, OfferBundle bundleId, Float newPrice, Date beginningDate, Date endDate) {
+    public OfferItemDto(Long id, Product product, OfferBundle bundleId, Float newPrice, Date beginningDate, Date endDate) {
         this.id = id;
         this.product = product;
         this.bundleId = bundleId;
@@ -29,7 +29,7 @@ public class OfferItemDto {
     }
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

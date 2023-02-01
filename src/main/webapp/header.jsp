@@ -96,6 +96,9 @@
                     <a href="${pageContext.request.contextPath}/AddCategory" class="btn btn-primary">Add Category</a>
                         <button class="btn btn-danger" type="submit">Delete Categories</button>
                     </form>
+
+                    <a href="${pageContext.request.contextPath}/DisplayOfferBundles" class="btn btn-primary" style="background-color: deeppink; border-color: deeppink">View offer bundles</a>
+                    <a href="${pageContext.request.contextPath}/CreateOfferBundle" class="btn btn-primary" style="background-color: deeppink; border-color: deeppink">Create offer bundle</a>
             </div>
             <div class="modal-footer">
                 <p class="text-muted">&copy Copyright Teen Titans.All rights reserved</p>

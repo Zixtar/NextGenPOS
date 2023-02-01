@@ -18,6 +18,8 @@ public class Product {
 
     private List<User> wishlistedByUsers;
 
+    private List<OfferItem> offerItems;
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -60,9 +62,9 @@ public class Product {
         this.price = price;
     }
 
-    @ManyToMany(mappedBy="products")
+    @ManyToMany(mappedBy = "products")
     public List<Category> getCategories() {
-        if(categories == null)
+        if (categories == null)
             setCategories(new ArrayList<>());
         return categories;
     }
@@ -73,7 +75,7 @@ public class Product {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<ProductPhoto> getPhotos() {
-        if(photos == null)
+        if (photos == null)
             return new ArrayList<>();
         return photos;
     }
@@ -81,6 +83,7 @@ public class Product {
     public void setPhotos(List<ProductPhoto> photos) {
         this.photos = photos;
     }
+
     @ManyToMany(mappedBy = "wishlistProducts")
     public List<User> getWishlistedByUsers() {
         return wishlistedByUsers;
@@ -88,5 +91,14 @@ public class Product {
 
     public void setWishlistedByUsers(List<User> wishlistedByUsers) {
         this.wishlistedByUsers = wishlistedByUsers;
+    }
+
+    @OneToMany(mappedBy = "product")
+    public List<OfferItem> getOfferItems() {
+        return offerItems;
+    }
+
+    public void setOfferItems(List<OfferItem> offerItems) {
+        this.offerItems = offerItems;
     }
 }

@@ -1,15 +1,13 @@
 package com.nextgenpos.demo.entities;
 
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.Fetch;
 
 import java.util.Date;
 
 @Entity
 public class OfferItem {
-    @Id
-    @GeneratedValue
-    private Integer id;
+
+    private Long id;
 
     private Product product;
 
@@ -18,11 +16,13 @@ public class OfferItem {
     private Date beginningDate;
     private Date endDate;
 
-    public Integer getId() {
+    @Id
+    @GeneratedValue
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

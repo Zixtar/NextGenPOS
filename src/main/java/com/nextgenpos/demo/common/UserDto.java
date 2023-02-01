@@ -1,5 +1,9 @@
 package com.nextgenpos.demo.common;
 
+import com.nextgenpos.demo.entities.Product;
+
+import java.util.List;
+
 public class UserDto {
 
     private Long id;
@@ -16,7 +20,8 @@ public class UserDto {
     private Integer number;
     private Integer postalCode;
 
-    public UserDto(Long id, String username, String password, String firstName, String lastName, String telNr, String email, String mbti, String country, String city, String street, Integer number, Integer postalCode) {
+    private List<Product> userWishlist;
+    public UserDto(Long id, String username, String password, String firstName, String lastName, String telNr, String email, String mbti, String country, String city, String street, Integer number, Integer postalCode, List<Product> userWishlist) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -30,6 +35,7 @@ public class UserDto {
         this.street = street;
         this.number = number;
         this.postalCode = postalCode;
+        this.userWishlist=userWishlist;
     }
 
     public Long getId() {
@@ -134,5 +140,13 @@ public class UserDto {
 
     public void setPostalCode(Integer postalCode) {
         this.postalCode = postalCode;
+    }
+
+    public List<Product> getUserWishlist() {
+        return userWishlist;
+    }
+
+    public void setUserWishlist(List<Product> userWishlist) {
+        this.userWishlist = userWishlist;
     }
 }
