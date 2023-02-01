@@ -58,4 +58,17 @@ public class ErrorReportBean {
         user.getErrorReports().add(errorReport);
         entityManager.persist(errorReport);
     }
+
+    public void setErrorReportStateByIds(List<Long> errorReportIds){
+        LOG.info("setErrorReportStateById");
+        TypedQuery<ErrorReport> typedQuery = entityManager.createQuery("SELECT e FROM ErrorReport e", ErrorReport.class);
+        List<ErrorReport> errorReports = typedQuery.getResultList();
+        for(ErrorReport errorReport:errorReports){
+            errorReport.setState(false);
+        }
+        for(Long id : errorReportIds) {
+            ErrorReport errorReport = entityManager.find(ErrorReport.class, id);
+            errorReport.setState(true);
+        }
+    }
 }
