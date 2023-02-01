@@ -72,14 +72,14 @@
                                     <img src="${pageContext.request.contextPath}/ProductFirstPhoto?id=${offerItem.product.id}"
                                          class="product-heart image-placeholder"
                                          alt="${offerItem.product.description}"></img>
-                                    <a href="${pageContext.request.contextPath}/AddToWishlist?id=${offerItem.id}">
+                                    <a href="${pageContext.request.contextPath}/AddToWishlist?id=${offerItem.product.id}">
                                         <button class="wishlist-btn" type="submit">
                                             <i class="bi bi-suit-heart-fill"></i>
                                         </button>
                                     </a>
                                 </div>
                                 <div class="add-btn">
-                                    <a href="${pageContext.request.contextPath}/CreateSale?id=${offerItem.id}">
+                                    <a href="${pageContext.request.contextPath}/CreateSale?id=${offerItem.product.id}">
                                     <button class="card-btn">Add to cart</button>
                                     </a>
                                 </div>
