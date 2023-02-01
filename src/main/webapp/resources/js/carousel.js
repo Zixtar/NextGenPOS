@@ -4,17 +4,17 @@ function createCarousel(carousel) {
     const slides = document.querySelectorAll(`#`+carousel + ' .carousel_item');
     const dots = document.querySelectorAll(`#`+carousel + ' .dot');
 
-
-    document.querySelector(`#`+carousel +
+try {
+    document.querySelector(`#` + carousel +
         ' #carousel_button--prev').addEventListener('click', function () {
         moveSlide(-1);
     });
 
-    document.querySelector(`#`+carousel +
+    document.querySelector(`#` + carousel +
         ' #carousel_button--next').addEventListener('click', function () {
         moveSlide(1);
     });
-
+}catch(e) {}
     dots.forEach(function (dot) {
         dot.addEventListener('click', function () {
             let bulletIndex = this.getAttribute('data-index');

@@ -33,13 +33,13 @@
                 <c:if test="${not empty product.photoIds}">
                     <div class="carousel_actions">
                         <div class="prev_btn">
-                            <button id="carousel_button--prev" aria-label="Previous slide">
+                            <button type="button" id="carousel_button--prev" aria-label="Previous slide">
                                 &lt;
                             </button>
                         </div>
 
                         <div class="next_btn">
-                            <button id="carousel_button--next" aria-label="Next slide">
+                            <button type="button" id="carousel_button--next" aria-label="Next slide">
                                 &gt;
                             </button>
                         </div>
@@ -49,7 +49,7 @@
                     <div class="dots">
                         <c:forEach var="photosId" items="${product.photoIds}" varStatus="status">
                             <span class="dot ${status.index == 0 ? "active" : " "}"
-                                  data-index="${status.index-1}"></span>
+                                  data-index="${status.index}"></span>
                         </c:forEach>
                     </div>
                 </c:if>
@@ -85,7 +85,7 @@
             </div>
         </div>
     </c:forEach>
-    </form>
+     </form>
 
 
     <script src="${pageContext.request.contextPath}/resources/js/carousel.js"></script>
