@@ -58,8 +58,11 @@
             </div>
 
         </div>
-        <div class="row">
+        <div class="d-flex justify-content-between">
             <b> Product Name: ${product.name} </b>
+            <a href="${pageContext.request.contextPath}/AddToWishlist?id=${product.id}">
+            <svg id="_x32_" xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 512 512" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <style type="text/css">  .st0{fill:deeppink;}  </style> <g>
+                <path class="st0" d="M256,0C114.609,0,0,114.625,0,256s114.609,256,256,256c141.375,0,256-114.625,256-256S397.375,0,256,0z M274.859,362.063c-5.969,2.656-17.984,7.281-17.984,7.281c-0.281,0.125-0.578,0.188-0.875,0.188s-0.594-0.063-0.875-0.188 c0,0-12.016-4.625-17.984-7.281c-94.297-41.719-110.078-105.625-110.078-139.125c0-35.594,28.859-64.469,64.469-64.469 S256,187.344,256,222.938c0-35.594,28.859-64.469,64.453-64.469c35.609,0,64.469,28.875,64.469,64.469 C384.922,256.438,369.156,320.344,274.859,362.063z"></path> </g> </g></svg></a>
         </div>
         <div class="row">
             Price:${product.price} lei

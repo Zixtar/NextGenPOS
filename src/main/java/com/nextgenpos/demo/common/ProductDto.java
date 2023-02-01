@@ -56,4 +56,6 @@ public class ProductDto {
     public List<OfferItem> getOfferItems() {
         return offerItems;
     }
+
+    public void setPrice(Integer price){this.price = price;}
 }

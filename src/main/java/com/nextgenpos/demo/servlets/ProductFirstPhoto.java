@@ -9,7 +9,10 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
 import java.util.List;
 
 @WebServlet(name = "ProductFirstPhoto", value = "/ProductFirstPhoto")
@@ -31,7 +34,15 @@ public class ProductFirstPhoto extends HttpServlet {
             response.getOutputStream().write(productPhoto.getFileContent());
         } else
         {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            URL url = getClass().getResource("/Placeholder.png");
+            File file = new File(url.getPath());
+            byte[] fileContent = Files.readAllBytes(file.toPath());
+
+            response.setContentType("image/png");
+            response.setContentLength(fileContent.length);
+            response.getOutputStream().write(fileContent);
+
+//            response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
     }
 

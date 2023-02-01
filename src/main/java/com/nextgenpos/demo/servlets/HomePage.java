@@ -8,6 +8,7 @@ import jakarta.inject.Inject;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import jdk.internal.net.http.common.Pair;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -50,40 +51,30 @@ public class HomePage extends HttpServlet {
         }
         request.setAttribute("offerItems", offerItems);
 
-        if(offerItems.isEmpty())
-            request.getRequestDispatcher("/homePage.jsp").forward(request, response);
-        Long bundleId=offerItemBean.getBundleId(offerItems.get(0).getId());
-        request.setAttribute("bundleId",bundleId);
-
+        if(!offerItems.isEmpty()) {   //request.getRequestDispatcher("/homePage.jsp").forward(request, response);
+            Long bundleId = offerItemBean.getBundleId(offerItems.get(0).getId());
+            request.setAttribute("bundleId", bundleId);
+        }
         //TODO: userId
         UserDto user=usersBean.findUserByUsername(request.getRemoteUser());
         if(user==null)
             request.getRequestDispatcher("/homePage.jsp").forward(request, response);
         List<ProductDto> userWishlist = productsBean.copyProductsToDto(user.getUserWishlist());
 
-        Hashtable<Object,Object> mixedWishList=new Hashtable<>();
-        List<String> categoriez=new ArrayList<>();
+        for (ProductDto prodDto: userWishlist) {
 
-        categoriez.add("Muffy");
-        List<OfferItem>of=new ArrayList<>();
+            List<OfferItem> list = prodDto.getOfferItems();
 
-        ProductDto productDto=new ProductDto(Long.parseLong("9"), "Beatrice", 13,"Descrierea mea",245,categoriez,of);
-        userWishlist.add(productDto);
-        for (ProductDto elem:userWishlist
-             ) {
-            if(elem.getOfferItems().size()==0)
-                mixedWishList.put("",elem);
-            else
+            if(list.size()!=0)
             {
-                OfferItemDto offerItemDto=offerItemBean.copySingleOfferItemToDto(elem.getOfferItems().get(0));
-                mixedWishList.put(offerItemDto,"");
+                prodDto.setPrice(list.get(0).getNewPrice().intValue());
             }
-
         }
-        request.setAttribute("mixedWishlist", mixedWishList);
 
-        int mixedWishlistSize = mixedWishList.size();
-        request.setAttribute("mixedWishlistSize", mixedWishlistSize);
+        request.setAttribute("userWishlist", userWishlist);
+
+        int userWishlistSize = userWishlist.size();
+        request.setAttribute("userWishlistSize", userWishlistSize);
 
         request.getRequestDispatcher("/homePage.jsp").forward(request, response);
     }

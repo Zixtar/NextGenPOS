@@ -73,7 +73,7 @@
                                          class="product-heart image-placeholder"
                                          alt="${offerItem.product.description}"></img>
                                     <c:if test="${pageContext.request.getRemoteUser() != null}">
-                                        <a href="${pageContext.request.contextPath}/CreateSale?id=${offerItem.product.id}">
+                                        <a href="${pageContext.request.contextPath}/AddToWishlist?id=${offerItem.product.id}">
                                             <button class="wishlist-btn" type="submit">
                                                 <i class="bi bi-suit-heart-fill"></i>
                                             </button>
@@ -116,61 +116,38 @@
                         &gt;
                     </button>
                     <div class="product-container">
-                        <c:forEach var="element" items="${mixedWishlist}">
+                        <c:forEach var="element" items="${userWishlist}">
                             <div class="product-card">
                                 <div class="product-image">
-                                    <c:choose>
-                                        <c:when test="${not empty element.key}">
-                                            <img src="${pageContext.request.contextPath}/ProductFirstPhoto?id=${element.key.product.id}"
-                                                 class="product-heart image-placeholder" alt="${element.key.product.description}"></img>
+                                            <img src="${pageContext.request.contextPath}/ProductFirstPhoto?id=${element.id}"
+                                                 class="product-heart image-placeholder" alt="${element.description}"></img>
                                             <c:if test="${pageContext.request.getRemoteUser() != null}">
-                                                <a href="${pageContext.request.contextPath}/RemoveItemFromWishlist?id=${element.key.product.id}">
-                                                    <button class="wishlist-btn">
-                                                        <i class="bi bi-suit-heart-fill" style="color:deeppink"></i>
-                                                    </button>
-                                                </a>
-                                            </c:if>
-                                        </c:when>
-                                        <c:when test="${empty element.key}">
-                                            <img src="${pageContext.request.contextPath}/ProductFirstPhoto?id=${element.value.id}"
-                                                 class="product-heart image-placeholder" alt="${element.value.description}"></img>
-                                            <c:if test="${pageContext.request.getRemoteUser() != null}">
-                                            <a href="${pageContext.request.contextPath}/RemoveItemFromWishlist?id=${element.value.id}">
+                                            <a href="${pageContext.request.contextPath}/RemoveItemFromWishlist?id=${element.id}">
                                                 <button class="wishlist-btn">
                                                     <i class="bi bi-suit-heart-fill" style="color:deeppink"></i>
                                                 </button>
                                             </a>
                                             </c:if>
-                                        </c:when>
-                                    </c:choose>
                                 </div>
                                 <c:if test="${pageContext.request.getRemoteUser() != null}">
                                     <div class="add-btn">
-                                        <button class="card-btn">Add to cart</button>
+                                        <a href="${pageContext.request.contextPath}/CreateSale?id=${element.id}">
+                                            <button class="card-btn">Add to cart</button>
+                                        </a>
                                     </div>
                                 </c:if>
-
                                 <div class="product-info">
-                                    <c:if test="${not empty element.key}">
-                                        <p class="product-description">${element.key.product.description}</p>
-                                        <span class="price">${element.key.newPrice}$</span>
+                                        <p class="product-description">${element.description}</p>
                                         <span class="actual-price"
-                                              style="text-decoration:none; color:black; font-weight:700; font-size:1.5rem">${element.key.product.price}$
+                                              style="text-decoration:none; color:black; font-weight:700; font-size:1.5rem">${element.price}$
                                         </span>
-                                    </c:if>
-                                    <c:if test="${empty element.key}">
-                                        <p class="product-description">${element.value.description}</p>
-                                        <span class="actual-price"
-                                              style="text-decoration:none; color:black; font-weight:700; font-size:1.5rem">${element.value.price}$
-                                        </span>
-                                    </c:if>
                                 </div>
                             </div>
                         </c:forEach>
 
                     </div>
                 </section>
-                <c:if test="${mixedWishlistSize>3}">
+                <c:if test="${userWishlistSize>3}">
                     <div class="dots">
                         <span class="dot active" data-index="0"></span>
                         <span class="dot" data-index="1"></span>

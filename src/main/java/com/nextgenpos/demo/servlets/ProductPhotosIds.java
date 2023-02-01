@@ -9,7 +9,10 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
 import java.util.List;
 
 @WebServlet(name = "ProductPhotosIds", value = "/ProductPhotosIds")
@@ -20,16 +23,30 @@ public class ProductPhotosIds extends HttpServlet {
     CategoriesBean categoriesBean;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Long photoId = Long.parseLong(request.getParameter("id"));
-        ProductPhotoDto photo = productsBean.findProductPhotoById(photoId);
-        List<CategoryDto> categories = categoriesBean.findAllCategories();
-        request.setAttribute("categories", categories);
+        String id = request.getParameter("id");
+        Long photoId;
+        ProductPhotoDto photo;
+        if(!id.isEmpty()) {
+            photoId = Long.parseLong(id);
+            photo = productsBean.findProductPhotoById(photoId);
+        }else {photo=null;}
+
+            List<CategoryDto> categories = categoriesBean.findAllCategories();
+            request.setAttribute("categories", categories);
+
         if (photo != null) {
             response.setContentType(photo.getFileType());
              response.setContentLength(photo.getFileContent().length);
              response.getOutputStream().write(photo.getFileContent());
               } else {
-               response.sendError(HttpServletResponse.SC_NOT_FOUND);
+                    URL url = getClass().getResource("/Placeholder.png");
+                    File file = new File(url.getPath());
+                    byte[] fileContent = Files.readAllBytes(file.toPath());
+
+                    response.setContentType("image/png");
+                    response.setContentLength(fileContent.length);
+                    response.getOutputStream().write(fileContent);
+               //response.sendError(HttpServletResponse.SC_NOT_FOUND);
              }
     }
 
