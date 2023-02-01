@@ -1,6 +1,8 @@
 package com.nextgenpos.demo.servlets;
 
+import com.nextgenpos.demo.common.CategoryDto;
 import com.nextgenpos.demo.common.OfferBundleDto;
+import com.nextgenpos.demo.ejb.CategoriesBean;
 import com.nextgenpos.demo.ejb.OfferBundleBean;
 import jakarta.inject.Inject;
 import jakarta.servlet.*;
@@ -8,17 +10,22 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "AddCarouselPhoto", value = "/AddCarouselPhoto")
 @MultipartConfig
 public class AddCarouselPhoto extends HttpServlet {
     @Inject
     OfferBundleBean offerBundleBean;
+    @Inject
+    CategoriesBean categoriesBean;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Long offerBundleId=Long.parseLong(request.getParameter("id"));
         OfferBundleDto offerBundleDto=offerBundleBean.findOfferBundleById(offerBundleId);
+        List<CategoryDto> categories = categoriesBean.findAllCategories();
+        request.setAttribute("categories", categories);
         request.setAttribute("offerBundle",offerBundleDto);
         request.getRequestDispatcher("/WEB-INF/pages/addCarouselPhoto.jsp").forward(request,response);
     }
