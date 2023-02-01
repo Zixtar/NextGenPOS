@@ -79,6 +79,10 @@ public class CreateSale extends HttpServlet {
             ProductDto product = productsBean.findById(productId);
 
             SaleItemCreatorDto SaleDTO =  saleCreateBean.CopyProductDTOtoSaleDTO(product);
+            if(product.getOfferItems().size()!=0)
+            {
+                SaleDTO.setPrice(Math.round(product.getOfferItems().get(0).getNewPrice()));
+            }
             List<Long> allPhotos = productsBean.findPhotosIdByProductId(product.getId());
             if(allPhotos != null && !allPhotos.isEmpty())
                 SaleDTO.setPhotoId(allPhotos.get(0));

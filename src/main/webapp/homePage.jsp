@@ -79,7 +79,9 @@
                                     </a>
                                 </div>
                                 <div class="add-btn">
+                                    <a href="${pageContext.request.contextPath}/CreateSale?id=${offerItem.id}">
                                     <button class="card-btn">Add to cart</button>
+                                    </a>
                                 </div>
                                 <div class="product-info">
                                     <p class="product-description">${offerItem.product.description}</p>
@@ -133,10 +135,25 @@
                                             </a>
                                         </c:when>
                                     </c:choose>
+
                                 </div>
-                                <div class="add-btn">
-                                    <button class="card-btn">Add to cart</button>
-                                </div>
+                                <c:choose>
+                                    <c:when test="${not empty element.key}">
+                                        <div class="add-btn">
+                                            <a href="${pageContext.request.contextPath}/CreateSale?id=${element.key.product.id}">
+                                                <button class="card-btn">Add to cart</button>
+                                            </a>
+                                        </div>
+                                    </c:when>
+                                    <c:when test="${empty element.key}">
+                                        <div class="add-btn">
+                                            <a href="${pageContext.request.contextPath}/CreateSale?id=${element.value.id}">
+                                                <button class="card-btn">Add to cart</button>
+                                            </a>
+                                        </div>
+                                    </c:when>
+                                </c:choose>
+
                                 <div class="product-info">
                                     <c:if test="${not empty element.key}">
                                         <p class="product-description">${element.key.product.description}</p>
