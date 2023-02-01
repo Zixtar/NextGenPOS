@@ -1,16 +1,16 @@
 function createCarousel(carousel) {
-    const slides = document.querySelectorAll(carousel + ' .carousel_item');
-    const dots = document.querySelectorAll(carousel + ' .dot');
     let lastPosition = -1;
     let slidePosition = 0;
+    const slides = document.querySelectorAll(`#`+carousel + ' .carousel_item');
+    const dots = document.querySelectorAll(`#`+carousel + ' .dot');
 
 
-    document.querySelector(carousel +
+    document.querySelector(`#`+carousel +
         ' #carousel_button--prev').addEventListener('click', function () {
         moveSlide(-1);
     });
 
-    document.querySelector(carousel +
+    document.querySelector(`#`+carousel +
         ' #carousel_button--next').addEventListener('click', function () {
         moveSlide(1);
     });
@@ -21,7 +21,6 @@ function createCarousel(carousel) {
             showSlideUsingBullets(bulletIndex);
         });
     });
-
     function changeCurrentSlide(slideNr, increment) {
         lastPosition = slideNr;
         slidePosition = (slideNr + increment + slides.length) % slides.length;
@@ -30,7 +29,9 @@ function createCarousel(carousel) {
     function changeSlideState() {
         slides[lastPosition].classList.remove('carousel_item--visible');
         slides[lastPosition].classList.add('carousel_item--hidden');
+        slides[slidePosition].classList.remove('carousel_item--hidden');
         slides[slidePosition].classList.add('carousel_item--visible');
+
         setBulletsStateInactive(dots);
         dots[slidePosition].className += ' active';
     }
@@ -93,7 +94,8 @@ function setBulletsStateInactive(dots) {
 //     }
 // }
 */
-createCarousel('#carousel1');
+
+
 // createCarousel('#carousel3');
 
 
@@ -101,6 +103,7 @@ createCarousel('#carousel1');
 
 
 function scrollProductCarousel(carousel) {
+
     const productContainers = document.querySelector(carousel+ ' .product-container');
     const nextBtn = document.querySelector(carousel + ' #carousel_button--next');
     const prevBtn = document.querySelector(carousel + ' #carousel_button--prev');
@@ -149,5 +152,10 @@ function scrollProductCarousel(carousel) {
     }
 }
 
-scrollProductCarousel('#carousel2');
-scrollProductCarousel('#carousel3');
+
+
+function createCarousels(prodNr)
+{
+    for(let i=0;i<prodNr;i++)
+        createCarousel(`carousel${i+5}`);
+}

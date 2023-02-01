@@ -30,6 +30,7 @@ public class Products extends HttpServlet {
       request.setAttribute("products", products);
         List<CategoryDto> categories = categoriesBean.findAllCategories();
         request.setAttribute("categories", categories);
+        request.setAttribute("prodNr",products.size());
         request.getRequestDispatcher("/WEB-INF/pages/products.jsp").forward(request, response);
 
     }

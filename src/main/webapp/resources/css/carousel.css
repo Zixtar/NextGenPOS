@@ -8,6 +8,22 @@
     overflow: hidden;
     max-width: 60rem;
     position: relative;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.carousel{
+    overflow: hidden;
+    max-width: 60rem;
+    position: relative;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.carousel_item > img{
+    width: 100%;
+    height: auto;
+    padding-top: 5rem;
 }
 
 #carousel .carousel_itemP,
@@ -44,7 +60,7 @@
     display: flex;
     justify-content: space-between;
     position: absolute;
-    width: 40rem;
+    width: 100%;
     top: 50%;
     /*transform: translateY(-50%);*/
 }
@@ -63,7 +79,7 @@
 }
 
 .next_btn {
-    margin-left: 52.5rem;
+    margin-left: 0;
 }
 
 

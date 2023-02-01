@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+
 .header_bar {
     height: 70px;
     color: transparent;
@@ -119,5 +120,8 @@ p {
     padding-top: 1rem;
 }
 
-
-
+.btn-primary{
+    background-color:deeppink !important;
+    border-color: pink;
+    margin: 2px 2px 2px 2px;
+}

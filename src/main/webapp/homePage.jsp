@@ -30,7 +30,7 @@
                     <img src="${pageContext.request.contextPath}/resources/img/7ds_carousel.jpg"/>
                 </div>
 
-                <div class="carousel_actions">
+                <div class="carousel_actions d-flex  justify-content-between">
                     <div class="prev_btn">
                         <button id="carousel_button--prev" aria-label="Previous slide">
                             &lt;
@@ -281,4 +281,6 @@
     <%--          you are intending to use the html elements in the js file!!--%>
     </div>
         <script src="${pageContext.request.contextPath}/resources/js/carousel.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/homepage-carousels.js"></script>
+
 </t:pageTemplate>

@@ -74,7 +74,7 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<ProductPhoto> getPhotos() {
         if(photos == null)
-            setPhotos(new ArrayList<>());
+            return new ArrayList<>();
         return photos;
     }
 
