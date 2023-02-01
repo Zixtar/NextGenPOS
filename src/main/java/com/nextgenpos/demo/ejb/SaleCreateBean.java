@@ -37,7 +37,7 @@ public class SaleCreateBean implements Serializable {
 
     public void InitializeSale(String cashierName)
     {
-        sale = new Sale();
+        init();
 
         TypedQuery<User> typedQuery = entityManager.createQuery("SELECT u FROM User u where u.username=:username", User.class)
                 .setParameter("username",cashierName);
@@ -84,17 +84,20 @@ public class SaleCreateBean implements Serializable {
 
     public void IncreaseQuantityForItem(Integer index)
     {
-        saleItemDtos.get(index).setQuantity( saleItemDtos.get(index).getQuantity() + 1 );
+            saleItemDtos.get(index).setQuantity( saleItemDtos.get(index).getQuantity() + 1 );
     }
 
     public void DecreaseQuantityForItem(Integer index)
     {
-        saleItemDtos.get(index).setQuantity( saleItemDtos.get(index).getQuantity() - 1 );
+        if(saleItemDtos.get(index).getQuantity() > 0) {
+            saleItemDtos.get(index).setQuantity(saleItemDtos.get(index).getQuantity() - 1);
+        }
     }
 
     public void RemoveItem(Integer index)
     {
-        saleItemDtos.remove(index);
+        int indx = index;
+        saleItemDtos.remove(indx);
     }
 
     public Integer getTotal() {
@@ -106,7 +109,7 @@ public class SaleCreateBean implements Serializable {
         return sum;
     }
 
-    public void FinalizeSale()
+    public void FinalizeSale(String username)
     {
         Collection<SaleItem> saleItems = new ArrayList<>();
 
@@ -125,6 +128,7 @@ public class SaleCreateBean implements Serializable {
         sale.setDate(new Date());
 
         entityManager.persist(sale);
+        InitializeSale(username);
     }
 
     public void CancelSale(String username) {

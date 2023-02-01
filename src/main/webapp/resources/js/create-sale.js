@@ -30,6 +30,44 @@ function ChangeItem(index,action)
 }`;
 
     xhr.send(data);
+
+    if(action === `removeItm`)
+    {
+        setTimeout(()=>{window.location.href = "http://localhost:8080/demo-1.0-SNAPSHOT/CreateSale";},100 )
+    }
+
+    if(action === `decreaseQty` || action === `increaseQty`)
+    {
+        handleQtyChange(action,index);
+    }
+}
+
+function handleQtyChange(action,index) {
+    let oldQty = document.getElementsByName(`qty${index}`)[0];
+    let newQty = document.createElement(`div`);
+    newQty.setAttribute(`class`, `text-center`);
+    newQty.setAttribute(`name`, `qty${index}`);
+
+    let oldTotal = document.getElementsByName(`Total`)[0];
+    let newTotal = document.createElement(`span`);
+    newTotal.setAttribute(`name`, `Total`)
+    let price = document.getElementsByTagName("b")[index];
+
+    let qtyNr = Number(oldQty.textContent.substring(4));
+    if (action === `decreaseQty`) {
+        if (qtyNr > 0) {
+            newQty.textContent = (`Qty:` + (qtyNr - 1));
+            newTotal.textContent = (Number(oldTotal.textContent) - Number(price.textContent)).toString();
+        }
+    } else {
+        newQty.textContent = (`Qty:` + (qtyNr + 1));
+        newTotal.textContent = (Number(oldTotal.textContent) + Number(price.textContent)).toString();
+    }
+
+    if (!(qtyNr == 0 && action === `decreaseQty`)) {
+    oldTotal.parentNode.replaceChild(newTotal, oldTotal);
+    oldQty.parentNode.replaceChild(newQty, oldQty);
+    }
 }
 
 function FinalizeSale()
@@ -46,4 +84,5 @@ function FinalizeSale()
         }};
 
     xhr.send();
+    setTimeout(()=>{window.location.href = "http://localhost:8080/demo-1.0-SNAPSHOT/CreateSale";},100 );
 }

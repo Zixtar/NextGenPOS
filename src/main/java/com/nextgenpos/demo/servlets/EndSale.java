@@ -39,8 +39,10 @@ public class EndSale extends HttpServlet {
         SaleCreateBean saleCreateBean = (SaleCreateBean) request.getSession().getAttribute(SALE_BEAN_SESION_KEY);
 
         if(saleCreateBean.getCurrentSaleProducts().size()>0)
-            saleCreateBean.FinalizeSale();
+            saleCreateBean.FinalizeSale(request.getRemoteUser());
 
-        response.sendRedirect(request.getContextPath() + "/CreateSale");
+
+       // request.getRequestDispatcher(request.getContextPath() + "/HomePage").forward(request,response);
+       // response.sendRedirect(request.getContextPath() + "/HomePage");
     }
 }
