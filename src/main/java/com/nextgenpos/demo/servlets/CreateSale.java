@@ -1,7 +1,9 @@
 package com.nextgenpos.demo.servlets;
 
+import com.nextgenpos.demo.common.CategoryDto;
 import com.nextgenpos.demo.common.ProductDto;
 import com.nextgenpos.demo.common.SaleItemCreatorDto;
+import com.nextgenpos.demo.ejb.CategoriesBean;
 import com.nextgenpos.demo.ejb.ProductsBean;
 import com.nextgenpos.demo.ejb.SaleCreateBean;
 import com.nextgenpos.demo.ejb.UsersBean;
@@ -36,10 +38,14 @@ public class CreateSale extends HttpServlet {
     @Inject
     UsersBean usersBean;
 
+    @Inject
+    CategoriesBean categoriesBean;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        List<CategoryDto> categories = categoriesBean.findAllCategories();
+        request.setAttribute("categories", categories);
         saleCreateBean = (SaleCreateBean) request.getSession().getAttribute(SALE_BEAN_SESION_KEY);
 
         if (saleCreateBean == null) {

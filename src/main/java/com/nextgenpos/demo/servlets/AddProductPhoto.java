@@ -24,6 +24,8 @@ public class AddProductPhoto extends HttpServlet {
         Long productId = Long.parseLong(request.getParameter("id"));
         ProductDto product= productsBean.findById(productId);
         request.setAttribute("product", product);
+        List<CategoryDto> categories = categoriesBean.findAllCategories();
+        request.setAttribute("categories", categories);
         request.getRequestDispatcher("/WEB-INF/pages/addProductPhoto.jsp").forward(request,response);
     }
 

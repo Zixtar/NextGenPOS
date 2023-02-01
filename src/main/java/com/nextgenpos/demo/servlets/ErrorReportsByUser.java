@@ -1,7 +1,9 @@
 package com.nextgenpos.demo.servlets;
 
+import com.nextgenpos.demo.common.CategoryDto;
 import com.nextgenpos.demo.common.ErrorReportDto;
 import com.nextgenpos.demo.common.UserDto;
+import com.nextgenpos.demo.ejb.CategoriesBean;
 import com.nextgenpos.demo.ejb.ErrorReportBean;
 import com.nextgenpos.demo.ejb.UsersBean;
 import jakarta.inject.Inject;
@@ -18,8 +20,12 @@ public class ErrorReportsByUser extends HttpServlet {
     ErrorReportBean errorReportBean;
     @Inject
     UsersBean usersBean;
+    @Inject
+    CategoriesBean categoriesBean;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<CategoryDto> categories = categoriesBean.findAllCategories();
+        request.setAttribute("categories", categories);
         UserDto user=usersBean.findUserByUsername(request.getRemoteUser());
         List<ErrorReportDto> errorReports=errorReportBean.findErrorReportsByUserId(user.getId());
         request.setAttribute("errorReports", errorReports);

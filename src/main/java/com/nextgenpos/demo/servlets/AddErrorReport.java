@@ -1,6 +1,8 @@
 package com.nextgenpos.demo.servlets;
 
+import com.nextgenpos.demo.common.CategoryDto;
 import com.nextgenpos.demo.common.UserDto;
+import com.nextgenpos.demo.ejb.CategoriesBean;
 import com.nextgenpos.demo.ejb.ErrorReportBean;
 import com.nextgenpos.demo.ejb.UsersBean;
 import jakarta.inject.Inject;
@@ -9,6 +11,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "AddErrorReport", value = "/AddErrorReport")
 public class AddErrorReport extends HttpServlet {
@@ -16,10 +19,14 @@ public class AddErrorReport extends HttpServlet {
     ErrorReportBean errorReportBean;
     @Inject
     UsersBean usersBean;
+    @Inject
+    CategoriesBean categoriesBean;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDto user=usersBean.findUserByUsername(request.getRemoteUser());
         request.setAttribute("user",user);
+        List<CategoryDto> categories = categoriesBean.findAllCategories();
+        request.setAttribute("categories", categories);
         request.getRequestDispatcher("/WEB-INF/pages/addErrorReport.jsp").forward(request, response);
     }
 
