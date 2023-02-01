@@ -6,6 +6,11 @@
     <div class="VarHolderDiv" value="${prodNr}"></div>
     <div class="container">
     <link rel="stylesheet" href="<c:url value="/resources/css/carousel.css"/>"/>
+    <form method="POST" action="${pageContext.request.contextPath}/Products">
+    <c:if test="${inAllProducts}">
+        <a href="${pageContext.request.contextPath}/AddProduct" class="btn btn-primary">Add Product</a>
+        <button class="btn btn-danger" type="submit">Delete Products</button>
+    </c:if>
 
     <c:forEach var="product" items="${products}" varStatus="prod">
 
@@ -63,14 +68,25 @@
         </div>
         </div>
         <div class="d-flex justify-content-center">
+            <div class="row">
+                <div class="col">
             <a class="btn btn-secondary" href="${pageContext.request.contextPath}/AddProductPhoto?id=${product.id}"
                role="button">Add photo</a>
+                </div>
+                <div class="col">
             <a class="btn btn-secondary" href="${pageContext.request.contextPath}/EditProduct?id=${product.id}">Edit
                 Product</a>
+                </div>
+                <div class="col">
+                    <c:if test="${inAllProducts}">
+                    <input type="checkbox" name="product_ids" value="${product.id}"/>
+                    </c:if>
+                </div>
+            </div>
         </div>
     </c:forEach>
+    </form>
 
-    <a href="${pageContext.request.contextPath}/AddProduct" class="btn btn-primary">Add Product</a>
 
     <script src="${pageContext.request.contextPath}/resources/js/carousel.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/products-carousels.js"></script>

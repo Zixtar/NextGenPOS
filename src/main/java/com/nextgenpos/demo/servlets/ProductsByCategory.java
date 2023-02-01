@@ -27,6 +27,8 @@ public class ProductsByCategory extends HttpServlet {
             List<ProductDto> productsOfCategory = productsBean.getProductsOfCategories(categoryId);
             request.setAttribute("products", productsOfCategory);
         }
+        Boolean inAllProducts = Boolean.FALSE;
+        request.setAttribute("inAllProducts", inAllProducts);
         request.getRequestDispatcher("/WEB-INF/pages/products.jsp").forward(request, response);
     }
 

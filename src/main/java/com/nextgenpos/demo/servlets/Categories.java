@@ -23,11 +23,11 @@ public class Categories extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String[] categoryIdsAsString = request.getParameterValues("category_ids");
         if(categoryIdsAsString != null){
-            List<Long> carIds = new ArrayList<>();
+            List<Long> categoryIds = new ArrayList<>();
             for(String categoryIdAsString : categoryIdsAsString){
-                carIds.add(Long.parseLong(categoryIdAsString));
+                categoryIds.add(Long.parseLong(categoryIdAsString));
             }
-            categoriesBean.deleteCategoriesByIds(carIds);
+            categoriesBean.deleteCategoriesByIds(categoryIds);
         }
         response.sendRedirect(request.getContextPath() + "/HomePage");
     }

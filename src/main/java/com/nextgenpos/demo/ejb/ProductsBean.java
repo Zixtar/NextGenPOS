@@ -151,4 +151,19 @@ public class ProductsBean {
         }
 
     }
+
+    public void deleteProductsByIds(List<Long> productIds) {
+        LOG.info("deleteProductsByIds");
+
+        for( Long productId : productIds){
+            Product product = entityManager.find(Product.class, productId);
+            List<Category> categories = product.getCategories();
+            for(Category category:categories){
+                category.getProducts().remove(product);
+            }
+            entityManager.remove(product);
+        }
+    }
+
 }
+
