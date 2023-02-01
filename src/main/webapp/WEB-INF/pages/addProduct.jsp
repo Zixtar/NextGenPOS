@@ -26,7 +26,7 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="stock">Stock</label>
-                <input class="form-control" type="text" name="stock" id="stock" placeholder="" value="" required>
+                <input class="form-control" type="number" name="stock" id="stock" placeholder="" value="" required>
                 <div class="invalid-feedback">
                     Stock is required.
                 </div>
@@ -46,7 +46,7 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="price">Price</label>
-                <input class="form-control" type="text" name="price" id="price" placeholder="" value="" required>
+                <input class="form-control" type="number" name="price" id="price" placeholder="" value="" required>
                 <div class="invalid-feedback">
                     Price is required.
                 </div>

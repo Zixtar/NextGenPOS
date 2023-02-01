@@ -36,21 +36,21 @@
             <label for="street">Street</label>
             <input type="text" class="form-control" id="street" name="street" placeholder="" value="${user.street}" required>
             <div class="invalid-feedback">
-              First name is required
+              Street is required
             </div>
           </div>
           <div class="col-md-4">
             <label for="number">Number</label>
-            <input type="text" class="form-control" id="number" name="number" placeholder="" value="${user.number}" required>
+            <input type="number" class="form-control" id="number" name="number" placeholder="" value="${user.number}" required>
             <div class="invalid-feedback">
-              First name is required
+              Number is required
             </div>
           </div>
           <div class="col-md-4">
             <label for="postal_code">Postal Code</label>
-            <input type="text" class="form-control" id="postal_code" name="postal_code" placeholder="" value="${user.postalCode}" required>
+            <input type="number" class="form-control" id="postal_code" name="postal_code" placeholder="" value="${user.postalCode}" required>
             <div class="invalid-feedback">
-              First name is required
+              PostalCode is required
             </div>
           </div>
         </div>
@@ -73,7 +73,7 @@
         <div class="row">
           <div class="col-md-6">
             <label for="tel_nr">Telephone Number</label>
-            <input type="text" class="form-control" id="tel_nr" name="tel_nr" placeholder="" value="${user.telNr}" required>
+            <input type="number" class="form-control" id="tel_nr" name="tel_nr" placeholder="" value="${user.telNr}" required>
             <div class="invalid-feedback">
               Telephone number is required
             </div>
