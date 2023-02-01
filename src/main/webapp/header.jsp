@@ -80,28 +80,28 @@
 <%--                </form>--%>
                 <h4>Categories</h4>
                     <form method="POST" action="${pageContext.request.contextPath}/Categories">
-                <ul>
+                <ul class="category-ul">
                     <li><a class="hambMenu_item" href="${pageContext.request.contextPath}/Products">All Products</a></li>
                     <c:forEach var="category" items="${categories}">
                     <div class="row">
-                        <div class="col">
-                    <li><a class="hambMenu_item" href="${pageContext.request.contextPath}/ProductsByCategory?id=${category.id}">${category.name}</a></li>
+                        <li class="category-li"><div>
+                    <a class="hambMenu_item" href="${pageContext.request.contextPath}/ProductsByCategory?id=${category.id}">${category.name}</a>
                         </div>
-                        <div class="col">
-                            <input type="checkbox" name="category_ids" value="${category.id}"/>
+                        <div>
+                            <input class="category-del-cb" type="checkbox" name="category_ids" value="${category.id}"/>
                         </div>
-                    </div>
+                    </div></li>
                     </c:forEach>
                 </ul>
                     <a href="${pageContext.request.contextPath}/AddCategory" class="btn btn-primary">Add Category</a>
-                        <button class="btn btn-danger" type="submit">Delete Categories</button>
+                        <button class="btn btn-danger" type="submit" style="width: 49%;">Delete Categories</button>
                     </form>
 
-                    <a href="${pageContext.request.contextPath}/DisplayOfferBundles" class="btn btn-primary" style="background-color: deeppink; border-color: deeppink">View offer bundles</a>
-                    <a href="${pageContext.request.contextPath}/CreateOfferBundle" class="btn btn-primary" style="background-color: deeppink; border-color: deeppink">Create offer bundle</a>
+                    <a href="${pageContext.request.contextPath}/DisplayOfferBundles" class="btn btn-primary bundle-button" style="background-color: deeppink; border-color: deeppink">View offer bundles</a>
+                    <a href="${pageContext.request.contextPath}/CreateOfferBundle" class="btn btn-primary bundle-button" style="background-color: deeppink; border-color: deeppink">Create offer bundle</a>
             </div>
             <div class="modal-footer">
-                <p class="text-muted">&copy Copyright Teen Titans.All rights reserved</p>
+                <p class="text-muted text-center">&copy Copyright Teen Titans.All rights reserved</p>
             </div>
         </div>
     </div>

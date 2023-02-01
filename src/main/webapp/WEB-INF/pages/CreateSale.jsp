@@ -7,7 +7,7 @@
 <t:pageTemplate pageTitle="Create Sale">
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/create-sale.js"></script>
 
-  <div class="container justify-content-center Content">
+  <div class="container justify-content-center">
     <div class="Sale-Text d-flex justify-content-between">
       <div class="align-self-center"> Cashier: ${pageContext.request.getRemoteUser().toString()}</div>
       <div class="text-center">Date: <div class="d-inline-block>" name="date"></div></div>
