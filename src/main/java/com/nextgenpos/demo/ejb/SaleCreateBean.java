@@ -101,7 +101,7 @@ public class SaleCreateBean implements Serializable {
         Integer sum = 0;
         for(SaleItemCreatorDto item : saleItemDtos)
         {
-            sum+= item.getPrice();
+            sum+= item.getPrice()*item.getQuantity();
         }
         return sum;
     }

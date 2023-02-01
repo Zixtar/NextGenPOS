@@ -4,27 +4,27 @@ public class SaleItemCreatorDto {
 
     private Long id;
 
-    private String ProductName;
+    private String productName;
 
-    private Integer Quantity;
+    private Integer quantity;
 
-    private Integer Price;
+    private Integer price;
 
-    private Long PhotoId;
+    private Long photoId;
 
     public Long getPhotoId() {
-        return PhotoId;
+        return photoId;
     }
 
     public void setPhotoId(Long photoId) {
-        PhotoId = photoId;
+        this.photoId = photoId;
     }
 
     public SaleItemCreatorDto(Long id, String productName, Integer quantity, Integer price) {
         this.id = id;
-        ProductName = productName;
-        Quantity = quantity;
-        Price = price;
+        this.productName = productName;
+        this.quantity = quantity;
+        this.price = price;
     }
 
     public Long getId() {
@@ -36,26 +36,26 @@ public class SaleItemCreatorDto {
     }
 
     public String getProductName() {
-        return ProductName;
+        return productName;
     }
 
     public void setProductName(String productName) {
-        ProductName = productName;
+        this.productName = productName;
     }
 
     public Integer getQuantity() {
-        return Quantity;
+        return quantity;
     }
 
     public void setQuantity(Integer quantity) {
-        Quantity = quantity;
+        this.quantity = quantity;
     }
 
     public Integer getPrice() {
-        return Price;
+        return price;
     }
 
     public void setPrice(Integer price) {
-        Price = price;
+        this.price = price;
     }
 }

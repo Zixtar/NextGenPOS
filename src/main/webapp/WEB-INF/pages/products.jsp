@@ -6,7 +6,6 @@
     <div class="VarHolderDiv" value="${prodNr}"></div>
     <div class="container">
     <link rel="stylesheet" href="<c:url value="/resources/css/carousel.css"/>"/>
-    <
 
     <c:forEach var="product" items="${products}" varStatus="prod">
 
