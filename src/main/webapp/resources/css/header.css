@@ -125,3 +125,7 @@ p {
     border-color: pink;
     margin: 2px 2px 2px 2px;
 }
+
+.form-control{
+    margin-bottom: 20px;
+}
