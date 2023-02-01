@@ -62,16 +62,20 @@ public class ProductsBean {
         }
         return productDtoList;
     }
-    public void createProduct(String name, Integer stock, String description, Integer price, Long categoryId){
+    public void createProduct(String name, Integer stock, String description, Integer price, String[] categoryIds){
         LOG.info("createProduct");
         Product product = new Product();
         product.setName(name);
         product.setStock(stock);
         product.setDescription(description);
         product.setPrice(price);
-        Category category = entityManager.find(Category.class, categoryId);
-        category.getProducts().add(product);
-        product.getCategories().add(category);
+
+        for(String categoryId: categoryIds){
+            Long id= Long.parseLong(categoryId);
+            Category category = entityManager.find(Category.class,id);
+            category.getProducts().add(product);
+            product.getCategories().add(category);
+        }
         entityManager.persist(product);
     }
     public void addPhotosToProduct(Long productId, String filename, String fileType, byte[] fileContent) {

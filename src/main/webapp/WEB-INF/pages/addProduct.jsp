@@ -56,9 +56,8 @@
 
         <div class="row">
             <div class="col-md-4">
-                <label for="category_id" class="form-label">Category</label>
-                <select class="form-select" id="category_id" name="category_id" required>
-                    <option value="" >Choose...</option>
+                <label for="category_ids" class="form-label">Category</label>
+                <select class="form-select" id="category_ids" name="category_ids" multiple>
                     <c:forEach var="category" items ="${categories}" varStatus="status">
                         <option value="${category.id}">${category.name}</option>
                     </c:forEach>

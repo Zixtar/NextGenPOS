@@ -33,8 +33,8 @@ public class AddProduct extends HttpServlet {
           Integer stock = Integer.parseInt(request.getParameter("stock"));
           String description = request.getParameter("description");
           Integer price = Integer.parseInt(request.getParameter("price"));
-          Long categoryId = Long.parseLong(request.getParameter("category_id"));
-          productsBean.createProduct(name, stock, description,price, categoryId);
+          String[] categoryIds = request.getParameterValues("category_ids");
+          productsBean.createProduct(name, stock, description,price, categoryIds);
           List<CategoryDto> categories = categoriesBean.findAllCategories();
           request.setAttribute("categories", categories);
           response.sendRedirect(request.getContextPath() + "/Products");
