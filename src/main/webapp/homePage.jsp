@@ -72,15 +72,21 @@
                                     <img src="${pageContext.request.contextPath}/ProductFirstPhoto?id=${offerItem.product.id}"
                                          class="product-heart image-placeholder"
                                          alt="${offerItem.product.description}"></img>
-                                    <a href="${pageContext.request.contextPath}/AddToWishlist?id=${offerItem.id}">
-                                        <button class="wishlist-btn" type="submit">
-                                            <i class="bi bi-suit-heart-fill"></i>
-                                        </button>
-                                    </a>
+                                    <c:if test="${pageContext.request.getRemoteUser() != null}">
+                                        <a href="${pageContext.request.contextPath}/CreateSale?id=${offerItem.product.id}">
+                                            <button class="wishlist-btn" type="submit">
+                                                <i class="bi bi-suit-heart-fill"></i>
+                                            </button>
+                                        </a>
+                                    </c:if>
                                 </div>
-                                <div class="add-btn">
-                                    <button class="card-btn">Add to cart</button>
-                                </div>
+                                <c:if test="${pageContext.request.getRemoteUser() != null}">
+                                    <div class="add-btn">
+                                        <a href="${pageContext.request.contextPath}/CreateSale?id=${offerItem.product.id}">
+                                            <button class="card-btn">Add to cart</button>
+                                        </a>
+                                    </div>
+                                </c:if>
                                 <div class="product-info">
                                     <p class="product-description">${offerItem.product.description}</p>
                                     <span class="price">${offerItem.newPrice}$</span>
