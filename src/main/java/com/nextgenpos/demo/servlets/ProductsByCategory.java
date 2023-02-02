@@ -28,6 +28,7 @@ public class ProductsByCategory extends HttpServlet {
             for(ProductDto product: productsOfCategory){
                 product.setPhotoIds(productsBean.findPhotosIdByProductId(product.getId()));
             }
+            request.setAttribute("prodNr",productsOfCategory.size());
             request.setAttribute("products", productsOfCategory);
         }
         Boolean inAllProducts = Boolean.FALSE;
