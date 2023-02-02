@@ -93,12 +93,14 @@
                     </div>
                     </c:forEach>
                 </ul>
+                <c:if test="${pageContext.request.isUserInRole('GENERAL_DIRECTOR') or pageContext.request.isUserInRole('ADMIN')}">
                     <a href="${pageContext.request.contextPath}/AddCategory" class="btn btn-primary">Add Category</a>
                         <button class="btn btn-danger" type="submit">Delete Categories</button>
-                    </form>
-
                     <a href="${pageContext.request.contextPath}/DisplayOfferBundles" class="btn btn-primary" style="background-color: deeppink; border-color: deeppink">View offer bundles</a>
-                    <a href="${pageContext.request.contextPath}/CreateOfferBundle" class="btn btn-primary" style="background-color: deeppink; border-color: deeppink">Create offer bundle</a>
+                </c:if>
+                </form>
+
+
             </div>
             <div class="modal-footer">
                 <p class="text-muted">&copy Copyright Teen Titans.All rights reserved</p>

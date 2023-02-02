@@ -8,6 +8,7 @@ import com.nextgenpos.demo.ejb.ProductsBean;
 import com.nextgenpos.demo.ejb.SaleCreateBean;
 import com.nextgenpos.demo.ejb.UsersBean;
 import com.nextgenpos.demo.entities.Product;
+import jakarta.annotation.security.DeclareRoles;
 import jakarta.inject.Inject;
 import jakarta.json.JsonReader;
 import jakarta.json.bind.serializer.JsonbSerializer;
@@ -24,7 +25,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-
+@DeclareRoles({"CASHIER","GENERAL_DIRECTOR","ADMIN"})
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"CASHIER","GENERAL_DIRECTOR","ADMIN"}))
 @WebServlet(name = "CreateSale", value = "/CreateSale")
 public class CreateSale extends HttpServlet {
 

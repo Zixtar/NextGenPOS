@@ -4,6 +4,7 @@ import com.nextgenpos.demo.common.CategoryDto;
 import com.nextgenpos.demo.common.ErrorReportDto;
 import com.nextgenpos.demo.ejb.CategoriesBean;
 import com.nextgenpos.demo.ejb.ErrorReportBean;
+import jakarta.annotation.security.DeclareRoles;
 import jakarta.inject.Inject;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -13,7 +14,8 @@ import org.eclipse.tags.shaded.org.apache.xpath.operations.Bool;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+@DeclareRoles({"CASHIER","GENERAL_DIRECTOR","ADMIN"})
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"CASHIER","GENERAL_DIRECTOR","ADMIN"}))
 @WebServlet(name = "ErrorReports", value = "/ErrorReports")
 public class ErrorReports extends HttpServlet {
     @Inject

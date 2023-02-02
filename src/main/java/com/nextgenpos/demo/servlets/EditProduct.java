@@ -4,6 +4,7 @@ import com.nextgenpos.demo.common.CategoryDto;
 import com.nextgenpos.demo.common.ProductDto;
 import com.nextgenpos.demo.ejb.CategoriesBean;
 import com.nextgenpos.demo.ejb.ProductsBean;
+import jakarta.annotation.security.DeclareRoles;
 import jakarta.inject.Inject;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -12,7 +13,8 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+@DeclareRoles({"GENERAL_DIRECTOR","ADMIN"})
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"GENERAL_DIRECTOR","ADMIN"}))
 @WebServlet(name = "EditProduct", value = "/EditProduct")
 public class EditProduct extends HttpServlet {
     @Inject
