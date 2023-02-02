@@ -64,10 +64,12 @@
         <div class="row">
             Price:${product.price} lei
         </div>
-        <div class="row">
-            <a href="${pageContext.request.contextPath}/CreateSale?id=${product.id}" class="btn btn-primary">Add to
-                Cart</a>
-        </div>
+        <c:if test="${pageContext.request.getRemoteUser() != null}">
+            <div class="row">
+                <a href="${pageContext.request.contextPath}/CreateSale?id=${product.id}" class="btn btn-primary">Add to
+                    Cart</a>
+            </div>
+        </c:if>
         </div>
         <c:if test="${pageContext.request.isUserInRole('GENERAL_DIRECTOR') or pageContext.request.isUserInRole('ADMIN')}">
             <div class="d-flex justify-content-center">

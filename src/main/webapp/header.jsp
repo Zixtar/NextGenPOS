@@ -87,13 +87,15 @@
                         <li class="category-li"><div>
                     <a class="hambMenu_item" href="${pageContext.request.contextPath}/ProductsByCategory?id=${category.id}">${category.name}</a>
                         </div>
-                        <div>
-                            <input class="category-del-cb" type="checkbox" name="category_ids" value="${category.id}"/>
-                        </div>
+                        <c:if test="${pageContext.request.isUserInRole('GENERAL_DIRECTOR') or pageContext.request.isUserInRole('ADMIN')}">
+                            <div>
+                                <input class="category-del-cb" type="checkbox" name="category_ids" value="${category.id}"/>
+                            </div>
+                        </c:if>
                     </div></li>
                     </c:forEach>
                 </ul>
-                <c:if test="${pageContext.request.getRemoteUser() == null}">
+                <c:if test="${pageContext.request.isUserInRole('GENERAL_DIRECTOR') or pageContext.request.isUserInRole('ADMIN')}">
                     <a href="${pageContext.request.contextPath}/AddCategory" class="btn btn-primary">Add Category</a>
                         <button class="btn btn-danger" type="submit" style="width: 49%;">Delete Categories</button>
                     <a href="${pageContext.request.contextPath}/DisplayOfferBundles" class="btn btn-primary bundle-button" style="background-color: deeppink; border-color: deeppink">View offer bundles</a>
