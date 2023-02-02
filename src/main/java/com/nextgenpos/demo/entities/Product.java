@@ -19,6 +19,7 @@ public class Product {
     private List<User> wishlistedByUsers;
 
     private List<OfferItem> offerItems;
+    private Boolean softDelete;
 
     public void setId(Long id) {
         this.id = id;
@@ -100,5 +101,13 @@ public class Product {
 
     public void setOfferItems(List<OfferItem> offerItems) {
         this.offerItems = offerItems;
+    }
+
+    public Boolean getSoftDelete() {
+        return softDelete;
+    }
+
+    public void setSoftDelete(Boolean softDelete) {
+        this.softDelete = softDelete;
     }
 }

@@ -4,6 +4,7 @@ import com.nextgenpos.demo.common.CategoryDto;
 import com.nextgenpos.demo.common.ProductDto;
 import com.nextgenpos.demo.common.ProductPhotoDto;
 import com.nextgenpos.demo.entities.Category;
+import com.nextgenpos.demo.entities.OfferItem;
 import com.nextgenpos.demo.entities.Product;
 import com.nextgenpos.demo.entities.ProductPhoto;
 import jakarta.ejb.EJBException;
@@ -28,7 +29,7 @@ public class ProductsBean {
     {
         LOG.info("findAllProducts");
         try{
-            TypedQuery<Product> typedQuery = entityManager.createQuery("SELECT c FROM Product c ", Product.class);
+            TypedQuery<Product> typedQuery = entityManager.createQuery("SELECT c FROM Product c where c.softDelete=false", Product.class);
             List<Product> products = typedQuery.getResultList();
             return copyProductsToDto(products);
         }catch (Exception ex)
@@ -68,6 +69,7 @@ public class ProductsBean {
         product.setStock(stock);
         product.setDescription(description);
         product.setPrice(price);
+        product.setSoftDelete(false);
 
         for(String categoryId: categoryIds){
             Long id= Long.parseLong(categoryId);
@@ -160,7 +162,7 @@ public class ProductsBean {
             for(Category category:categories){
                 category.getProducts().remove(product);
             }
-            entityManager.remove(product);
+            product.setSoftDelete(true);
         }
     }
 
