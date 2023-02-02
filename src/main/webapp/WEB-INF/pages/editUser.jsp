@@ -2,10 +2,13 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<t:pageTemplate pageTitle="Add User">
+<t:pageTemplate pageTitle="Edit User">
   <div class="row d-flex justify-content-center">
     <div class="form-group col-md-6">
       <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/EditUser">
+        <div class="d-flex justify-content-center">
+          <h1 class="h3 mb-3 font-weight-normal">Edit User</h1>
+        </div>
         <div class="row-md-6">
           <div class="col">
             <label for="email">Email</label>

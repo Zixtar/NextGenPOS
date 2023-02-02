@@ -6,6 +6,9 @@
   <div class="row d-flex justify-content-center">
     <div class="form-group col-md-6">
       <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/AddUser">
+        <div class="d-flex justify-content-center">
+          <h1 class="h3 mb-3 font-weight-normal">Add User</h1>
+        </div>
         <div class="row-md-6">
           <div class="col">
             <label for="username">Username</label>
