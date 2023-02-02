@@ -38,7 +38,8 @@ public class HomePage extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        List<CategoryDto> categories = categoriesBean.findAllCategories();
+        request.setAttribute("categories", categories);
 //        List<OfferItemDto> offerItems = offerItemBean.findAllOfferItems();
         SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd");
         List<OfferItemDto> offerItems= null;
@@ -49,11 +50,11 @@ public class HomePage extends HttpServlet {
         }
         request.setAttribute("offerItems", offerItems);
 
+        if(offerItems.isEmpty())
+            request.getRequestDispatcher("/homePage.jsp").forward(request, response);
         Long bundleId=offerItemBean.getBundleId(offerItems.get(0).getId());
         request.setAttribute("bundleId",bundleId);
 
-        List<CategoryDto> categories = categoriesBean.findAllCategories();
-        request.setAttribute("categories", categories);
         //TODO: userId
         UserDto user=usersBean.findUserByUsername(request.getRemoteUser());
         if(user==null)
@@ -61,7 +62,7 @@ public class HomePage extends HttpServlet {
         List<ProductDto> userWishlist = productsBean.copyProductsToDto(user.getUserWishlist());
 
         Hashtable<Object,Object> mixedWishList=new Hashtable<>();
-        List<String>categoriez=new ArrayList<>();
+        List<String> categoriez=new ArrayList<>();
 
         categoriez.add("Muffy");
         List<OfferItem>of=new ArrayList<>();
