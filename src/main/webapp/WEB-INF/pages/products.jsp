@@ -64,28 +64,28 @@
         <div class="row">
             Price:${product.price} lei
         </div>
-        <c:if test="${pageContext.request.getRemoteUser() != null}">
-            <div class="row">
-                <a href="${pageContext.request.contextPath}/CreateSale?id=${product.id}" class="btn btn-primary">Add to
-                    Cart</a>
-            </div>
-        </c:if>
+        <div class="row">
+            <a href="${pageContext.request.contextPath}/CreateSale?id=${product.id}" class="btn btn-primary">Add to
+                Cart</a>
+        </div>
         </div>
         <c:if test="${pageContext.request.isUserInRole('GENERAL_DIRECTOR') or pageContext.request.isUserInRole('ADMIN')}">
             <div class="d-flex justify-content-center">
-                <div class="row">
-                    <div class="col">
+                <div class="d-flex justify-content-center">
+                    <div>
                 <a class="btn btn-secondary" href="${pageContext.request.contextPath}/AddProductPhoto?id=${product.id}"
                    role="button">Add photo</a>
                     </div>
-                    <div class="col">
+                    <c:if test="${inAllProducts}">
+                            <div class>
+                            <div>Delete check</div>
+                            <input class="del-cb" type="checkbox" name="product_ids" value="${product.id}"/>
+                        </div>
+                    </c:if>
+
+                    <div>
                 <a class="btn btn-secondary" href="${pageContext.request.contextPath}/EditProduct?id=${product.id}">Edit
                     Product</a>
-                    </div>
-                    <div class="col">
-                        <c:if test="${inAllProducts}">
-                        <input type="checkbox" name="product_ids" value="${product.id}"/>
-                        </c:if>
                     </div>
                 </div>
             </div>

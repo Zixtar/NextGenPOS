@@ -129,3 +129,26 @@ p {
 .form-control{
     margin-bottom: 20px;
 }
+
+.del-cb{
+    width:100%;
+    accent-color: #dc3545;
+}
+
+.category-li{
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.category-del-cb{
+    accent-color: #dc3545;
+}
+
+.bundle-button{
+    width: 90%;
+}
+
+.category-ul{
+    padding-right: 6%;
+}
