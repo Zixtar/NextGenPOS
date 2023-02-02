@@ -25,6 +25,9 @@ public class ProductsByCategory extends HttpServlet {
         Long categoryId = Long.parseLong(request.getParameter("id"));
         if(!categories.isEmpty()){
             List<ProductDto> productsOfCategory = productsBean.getProductsOfCategories(categoryId);
+            for(ProductDto product: productsOfCategory){
+                product.setPhotoIds(productsBean.findPhotosIdByProductId(product.getId()));
+            }
             request.setAttribute("products", productsOfCategory);
         }
         Boolean inAllProducts = Boolean.FALSE;

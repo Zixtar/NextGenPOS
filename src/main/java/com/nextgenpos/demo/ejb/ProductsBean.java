@@ -37,9 +37,8 @@ public class ProductsBean {
         }
     }
 
-    public List<ProductDto>getProductsOfCategories(Long categoryId) {
+    public List<ProductDto> getProductsOfCategories(Long categoryId) {
         List<ProductDto> productsList = null;
-        List<List<ProductDto>> listsOfProductsList = new ArrayList<>();
         try {
             Category category = entityManager.find(Category.class, categoryId);
             productsList = this.copyProductsToDto(category.getProducts());
