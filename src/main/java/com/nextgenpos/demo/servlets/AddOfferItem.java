@@ -1,8 +1,10 @@
 package com.nextgenpos.demo.servlets;
 
+import com.nextgenpos.demo.common.CategoryDto;
 import com.nextgenpos.demo.common.OfferBundleDto;
 import com.nextgenpos.demo.common.OfferItemDto;
 import com.nextgenpos.demo.common.ProductDto;
+import com.nextgenpos.demo.ejb.CategoriesBean;
 import com.nextgenpos.demo.ejb.OfferBundleBean;
 import com.nextgenpos.demo.ejb.OfferItemBean;
 import com.nextgenpos.demo.ejb.ProductsBean;
@@ -24,6 +26,8 @@ public class AddOfferItem extends HttpServlet {
     ProductsBean productsBean;
     @Inject
     OfferBundleBean offerBundleBean;
+    @Inject
+    CategoriesBean categoriesBean;
 
     @Inject
     OfferItemBean offerItemBean;
@@ -32,6 +36,8 @@ public class AddOfferItem extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<ProductDto> products = productsBean.findAllProducts();
         request.setAttribute("products",products);
+        List<CategoryDto> categories = categoriesBean.findAllCategories();
+        request.setAttribute("categories", categories);
 
         Long bundleId=Long.parseLong(request.getParameter("id"));
         request.setAttribute("bundleId", bundleId);
